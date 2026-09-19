@@ -2,349 +2,603 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Yatin Jain | Android 10 / Oreo Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yatin Jain | Software Engineer & Full-Stack Developer</title>
   
-  <!-- Fonts: Google Sans & Roboto, Fira Code for Terminal -->
+  <!-- Inter & Fira Code Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Product+Sans:wght@400;700&family=Roboto:wght@300;400;500;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   
-  <!-- FontAwesome 6 Icons -->
+  <!-- FontAwesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="wallpaper-pixel nav-oreo">
+<body class="dark-theme">
 
-  <!-- Desktop Fullscreen Toggle (Only visible on Desktop) -->
-  <button id="desktop-fs-toggle" class="desktop-fs-toggle" onclick="AndroidOS.toggleFullscreen()" title="Toggle Fullscreen">
-    <i class="fa-solid fa-expand"></i> <span id="fs-toggle-text">Fullscreen View</span>
-  </button>
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <span class="logo-bracket">&lt;</span>Yatin<span class="logo-dot">.</span>Jain<span class="logo-bracket">/&gt;</span>
+      </a>
 
-  <!-- Device Hardware Mockup Wrapper -->
-  <div class="device-wrapper" id="device-wrapper">
-    <!-- Physical Side Buttons (Volume & Power) -->
-    <div class="hw-button hw-vol-up" onclick="AndroidOS.adjustVolume(1)" title="Volume Up"></div>
-    <div class="hw-button hw-vol-down" onclick="AndroidOS.adjustVolume(-1)" title="Volume Down"></div>
-    <div class="hw-button hw-power" onclick="AndroidOS.togglePower()" title="Power / Lock Screen"></div>
+      <div class="nav-menu" id="nav-menu">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#resume" class="nav-link">Resume</a>
+        <a href="#contact" class="nav-link btn-contact">Contact</a>
+      </div>
 
-    <!-- Phone Chassis -->
-    <div class="phone-frame" id="phone-frame">
-      
-      <!-- Top Speaker Bezel & Camera Punch-hole -->
-      <div class="speaker-grill"></div>
-      <div class="camera-punch-hole" title="Front Camera"></div>
+      <div class="nav-actions">
+        <!-- Dark/Light Theme Toggle -->
+        <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
 
-      <!-- Phone Screen Glass -->
-      <div class="phone-screen" id="phone-screen">
+        <!-- Mobile Hamburger -->
+        <button id="mobile-toggle" class="mobile-toggle-btn" title="Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
 
-        <!-- 0. AMBIENT LOCK SCREEN (Slide Up to Unlock) -->
-        <div class="lock-screen" id="lock-screen">
-          <div class="lock-header">
-            <i class="fa-solid fa-lock" id="lock-icon"></i>
-            <span class="lock-carrier">Airtel 5G • Yatin.io</span>
+  <!-- HERO SECTION -->
+  <header class="hero-section" id="hero">
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="pulse-dot"></span> Available for Full-Time & Intern Opportunities
+        </div>
+        <h1 class="hero-title">
+          Hi, I'm <span class="gradient-text">Yatin Jain</span>
+        </h1>
+        <h2 class="hero-subtitle">
+          Software Engineer | Full-Stack & Backend Developer
+        </h2>
+        <p class="hero-desc">
+          I specialize in building scalable backend services, robust RESTful APIs, and modern responsive web applications using Python, Django, Next.js, and PostgreSQL.
+        </p>
+
+        <div class="hero-ctas">
+          <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-laptop-code"></i> View Projects</a>
+          <a href="Yatin_Jain_Resume.pdf" download="Yatin_Jain_Resume.pdf" class="btn btn-secondary"><i class="fa-solid fa-download"></i> Resume</a>
+          <a href="#contact" class="btn btn-outline"><i class="fa-solid fa-envelope"></i> Contact Me</a>
+        </div>
+
+        <div class="hero-socials">
+          <a href="https://github.com/yatinjain75" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://linkedin.com/in/yatinjain75" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="mailto:jainyatin693@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+          <a href="tel:+917357910535" title="Phone"><i class="fa-solid fa-phone"></i></a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="avatar-card">
+          <div class="avatar-circle">YJ</div>
+          <div class="avatar-info">
+            <strong>Yatin Jain</strong>
+            <span>Jaipur, Rajasthan, India</span>
           </div>
-          <div class="lock-clock-area">
-            <h1 class="lock-time" id="lock-time">14:15</h1>
-            <p class="lock-date" id="lock-date">Saturday, September 19</p>
-            <div class="lock-weather">
-              <i class="fa-solid fa-sun weather-icon"></i> 32°C • Jaipur, Rajasthan
+          <div class="tech-ticker">
+            <span>Python</span> • <span>Next.js</span> • <span>Django</span> • <span>PostgreSQL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT SECTION -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">About Me</span>
+        <h2 class="section-title">Professional Summary & Background</h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-card summary-card">
+          <h3><i class="fa-solid fa-quote-left"></i> Summary</h3>
+          <p>
+            "Seeking an entry-level opportunity in software engineering to apply my academic foundation in computer science, strengthen my expertise in full-stack development, and contribute to innovative projects. Eager to learn modern technologies and grow as a software developer while delivering quality solutions."
+          </p>
+        </div>
+
+        <div class="about-card education-card">
+          <h3><i class="fa-solid fa-graduation-cap"></i> Education</h3>
+          <div class="edu-item">
+            <div class="edu-title-row">
+              <strong>Jaipur Engineering College and Research Centre (JECRC)</strong>
+              <span class="edu-year">Expected 2026</span>
+            </div>
+            <p class="edu-degree">Bachelor of Technology (B.Tech.) in Computer Science & Engineering</p>
+            <p class="edu-meta"><strong>CGPA: 6.82</strong> • Jaipur, Rajasthan, India</p>
+          </div>
+        </div>
+
+        <div class="about-card certs-card">
+          <h3><i class="fa-solid fa-certificate"></i> Certifications</h3>
+          <ul class="cert-list">
+            <li>
+              <i class="fa-solid fa-award"></i>
+              <div>
+                <strong>MongoDB Python Developer Path</strong>
+                <span>MongoDB Inc.</span>
+              </div>
+            </li>
+            <li>
+              <i class="fa-solid fa-award"></i>
+              <div>
+                <strong>Python Crash Course</strong>
+                <span>Campus Code</span>
+              </div>
+            </li>
+            <li>
+              <i class="fa-solid fa-award"></i>
+              <div>
+                <strong>Music Recommendation Systems Masterclass</strong>
+                <span>Physics Wallah</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK EXPERIENCE SECTION -->
+  <section class="section bg-alt" id="experience">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Career History</span>
+        <h2 class="section-title">Work Experience</h2>
+      </div>
+
+      <div class="timeline">
+        
+        <!-- Experience 1 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <h3 class="role">Software Engineer Intern</h3>
+                <h4 class="company">Goldenhat Technologies <span class="badge badge-remote">Remote</span></h4>
+              </div>
+              <span class="timeline-date active-date">June 2026 – Present</span>
+            </div>
+            <ul class="timeline-bullets">
+              <li>Developing and maintaining responsive web applications and scalable backend services using <strong>Next.js</strong>, <strong>React</strong>, and <strong>Python</strong>.</li>
+              <li>Architecting secure <strong>RESTful API endpoints</strong>, optimizing <strong>PostgreSQL</strong> queries, and reducing server response latency.</li>
+              <li>Implementing robust client and server-side state synchronization, elevating user workflow efficiency.</li>
+              <li>Collaborating in agile team sprints, engaging in peer code reviews, and writing maintainable, modular code.</li>
+            </ul>
+            <div class="skill-tags">
+              <span>Next.js</span>
+              <span>React</span>
+              <span>Python</span>
+              <span>PostgreSQL</span>
+              <span>REST APIs</span>
+              <span>Agile</span>
             </div>
           </div>
-          <div class="lock-notifications">
-            <div class="lock-notif-card" onclick="AndroidOS.unlockAndOpen('gmail')">
-              <div class="lock-notif-icon"><i class="fa-solid fa-envelope"></i></div>
-              <div class="lock-notif-text">
-                <strong>New Message from Recruiter</strong>
-                <p>Yatin Jain is open for Full-Stack & Backend roles!</p>
+        </div>
+
+        <!-- Experience 2 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <h3 class="role">Python Developer Intern</h3>
+                <h4 class="company">Navodita Infotech <span class="badge badge-remote">Remote</span></h4>
+              </div>
+              <span class="timeline-date">July 2025 – August 2025</span>
+            </div>
+            <ul class="timeline-bullets">
+              <li>Engineered automated Python data processing scripts, increasing dataset processing throughput by <strong>25%</strong>.</li>
+              <li>Implemented backend application workflows, integrated third-party RESTful APIs, and conducted unit testing.</li>
+            </ul>
+            <div class="skill-tags">
+              <span>Python</span>
+              <span>Data Processing</span>
+              <span>REST APIs</span>
+              <span>Unit Testing</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Experience 3 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <h3 class="role">Data Science Intern</h3>
+                <h4 class="company">SkillCraft Technology <span class="badge badge-remote">Remote</span></h4>
+              </div>
+              <span class="timeline-date">February 2025</span>
+            </div>
+            <ul class="timeline-bullets">
+              <li>Analyzed multi-dimensional datasets with <strong>Python</strong>, <strong>Pandas</strong>, and <strong>Scikit-learn</strong> to identify high-impact statistical patterns.</li>
+            </ul>
+            <div class="skill-tags">
+              <span>Python</span>
+              <span>Pandas</span>
+              <span>Scikit-learn</span>
+              <span>Data Analysis</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PROJECTS SECTION -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Featured Works</span>
+        <h2 class="section-title">Projects I've Built</h2>
+      </div>
+
+      <div class="projects-grid">
+        
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div class="project-top">
+            <div class="project-badge-row">
+              <span class="project-cat">Agricultural ERP & Client Portal</span>
+              <span class="badge badge-prod">Production Deployed</span>
+            </div>
+            <h3 class="project-name">Baba Ratna Plant Zone</h3>
+            <span class="project-date">June 2026</span>
+          </div>
+          <p class="project-desc">
+            An enterprise Agricultural ERP system with Role-Based Access Control (RBAC) across Admin, Expert, and Staff roles. Built with Next.js Server Actions and Supabase Admin API with secure PIN credentials.
+          </p>
+          <ul class="project-bullets">
+            <li>Automated user provisioning module with secure PIN credentials.</li>
+            <li>Server-validated API routes mitigating authorization vulnerabilities.</li>
+            <li>Mobile-first dashboard with Tailwind CSS & Framer Motion fluid animations.</li>
+          </ul>
+          <div class="skill-tags">
+            <span>Next.js</span>
+            <span>React</span>
+            <span>Supabase</span>
+            <span>PostgreSQL</span>
+            <span>Tailwind CSS</span>
+            <span>Framer Motion</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/yatinjain75" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> Repository</a>
+            <a href="#contact" class="btn-link secondary"><i class="fa-solid fa-envelope"></i> Request Demo</a>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div class="project-top">
+            <div class="project-badge-row">
+              <span class="project-cat">Automation & Reservation Platform</span>
+              <span class="badge badge-cloud">Cloud Deployed</span>
+            </div>
+            <h3 class="project-name">Library & Seat Management System</h3>
+            <span class="project-date">February 2026</span>
+          </div>
+          <p class="project-desc">
+            Constructed a full-stack library platform automating inventory tracking, book issuance, and real-time floor seat reservations with live analytics.
+          </p>
+          <ul class="project-bullets">
+            <li>Interactive Admin console with live seat occupancy analytics.</li>
+            <li>Automated fine calculation and support ticket triage.</li>
+            <li>Secured sensitive credentials via Werkzeug cryptographic password hashing.</li>
+          </ul>
+          <div class="skill-tags">
+            <span>Python</span>
+            <span>Streamlit</span>
+            <span>MongoDB</span>
+            <span>Werkzeug</span>
+            <span>Streamlit Cloud</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/yatinjain75" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> Repository</a>
+            <a href="#contact" class="btn-link secondary"><i class="fa-solid fa-envelope"></i> Inquire</a>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card">
+          <div class="project-top">
+            <div class="project-badge-row">
+              <span class="project-cat">Backend Microservice</span>
+              <span class="badge badge-api">API Service</span>
+            </div>
+            <h3 class="project-name">Learning Tracker</h3>
+            <span class="project-date">July 2025</span>
+          </div>
+          <p class="project-desc">
+            Architected a high-performance RESTful backend API service for goal management, daily progress tracking, and milestone evaluations.
+          </p>
+          <ul class="project-bullets">
+            <li>JSON Web Token (JWT) user authorization and session management.</li>
+            <li>Authored comprehensive Postman API collections with automated test suites.</li>
+            <li>Optimized relational database schema and query performance.</li>
+          </ul>
+          <div class="skill-tags">
+            <span>Django REST Framework</span>
+            <span>Python</span>
+            <span>JWT</span>
+            <span>Postman</span>
+            <span>PostgreSQL</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/yatinjain75" target="_blank" class="btn-link"><i class="fa-brands fa-github"></i> Repository</a>
+            <a href="#contact" class="btn-link secondary"><i class="fa-solid fa-envelope"></i> Inquire</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNICAL SKILLS SECTION -->
+  <section class="section bg-alt" id="skills">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Technical Arsenal</span>
+        <h2 class="section-title">Skills & Technologies</h2>
+      </div>
+
+      <div class="skills-container">
+        
+        <div class="skill-category">
+          <div class="cat-head">
+            <i class="fa-solid fa-code"></i>
+            <h3>Languages</h3>
+          </div>
+          <div class="skill-chips">
+            <span class="chip"><i class="fa-brands fa-python"></i> Python</span>
+            <span class="chip"><i class="fa-brands fa-js"></i> JavaScript</span>
+            <span class="chip"><i class="fa-solid fa-c"></i> C / C++</span>
+            <span class="chip"><i class="fa-solid fa-database"></i> SQL (PostgreSQL, MySQL)</span>
+            <span class="chip"><i class="fa-brands fa-html5"></i> HTML5</span>
+            <span class="chip"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <div class="cat-head">
+            <i class="fa-solid fa-cubes"></i>
+            <h3>Frameworks & Libraries</h3>
+          </div>
+          <div class="skill-chips">
+            <span class="chip"><i class="fa-brands fa-react"></i> Next.js</span>
+            <span class="chip"><i class="fa-brands fa-react"></i> React</span>
+            <span class="chip"><i class="fa-solid fa-leaf"></i> Django</span>
+            <span class="chip"><i class="fa-solid fa-server"></i> Django REST Framework (DRF)</span>
+            <span class="chip"><i class="fa-solid fa-wind"></i> Tailwind CSS</span>
+            <span class="chip"><i class="fa-solid fa-wand-magic-sparkles"></i> Framer Motion</span>
+            <span class="chip"><i class="fa-solid fa-chart-simple"></i> Streamlit</span>
+            <span class="chip"><i class="fa-solid fa-table"></i> Pandas</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <div class="cat-head">
+            <i class="fa-solid fa-database"></i>
+            <h3>Databases & Cloud</h3>
+          </div>
+          <div class="skill-chips">
+            <span class="chip"><i class="fa-solid fa-database"></i> PostgreSQL</span>
+            <span class="chip"><i class="fa-solid fa-leaf"></i> MongoDB</span>
+            <span class="chip"><i class="fa-solid fa-database"></i> MySQL</span>
+            <span class="chip"><i class="fa-solid fa-bolt"></i> Supabase</span>
+            <span class="chip"><i class="fa-brands fa-git-alt"></i> Git & GitHub</span>
+            <span class="chip"><i class="fa-solid fa-paper-plane"></i> Postman</span>
+            <span class="chip"><i class="fa-solid fa-triangle-exclamation"></i> Vercel</span>
+            <span class="chip"><i class="fa-solid fa-train"></i> Railway</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <div class="cat-head">
+            <i class="fa-solid fa-brain"></i>
+            <h3>Core CS & Architecture</h3>
+          </div>
+          <div class="skill-chips">
+            <span class="chip"><i class="fa-solid fa-network-wired"></i> RESTful APIs</span>
+            <span class="chip"><i class="fa-solid fa-key"></i> JWT Authentication</span>
+            <span class="chip"><i class="fa-solid fa-user-shield"></i> RBAC</span>
+            <span class="chip"><i class="fa-solid fa-diagram-project"></i> Data Structures & Algorithms</span>
+            <span class="chip"><i class="fa-solid fa-database"></i> DBMS</span>
+            <span class="chip"><i class="fa-solid fa-cube"></i> OOP</span>
+            <span class="chip"><i class="fa-solid fa-microchip"></i> Operating Systems</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- RESUME SECTION -->
+  <section class="section" id="resume">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Document</span>
+        <h2 class="section-title">Resume</h2>
+      </div>
+
+      <div class="resume-wrapper">
+        <div class="resume-actions-bar">
+          <a href="Yatin_Jain_Resume.pdf" download="Yatin_Jain_Resume.pdf" class="btn btn-primary">
+            <i class="fa-solid fa-download"></i> Download PDF
+          </a>
+          <button onclick="window.print()" class="btn btn-secondary">
+            <i class="fa-solid fa-print"></i> Print Resume
+          </button>
+        </div>
+
+        <div class="resume-paper">
+          <div class="resume-sheet-header">
+            <h1>YATIN JAIN</h1>
+            <p class="resume-sub">Software Engineer | Full-Stack & Backend Developer</p>
+            <p class="resume-contact-row">
+              <span>Jaipur, Rajasthan, India</span> • 
+              <span>+91 7357910535</span> • 
+              <a href="mailto:jainyatin693@gmail.com">jainyatin693@gmail.com</a> • 
+              <a href="https://linkedin.com/in/yatinjain75" target="_blank">linkedin.com/in/yatinjain75</a> • 
+              <a href="https://github.com/yatinjain75" target="_blank">github.com/yatinjain75</a>
+            </p>
+          </div>
+
+          <div class="resume-block">
+            <h3>PROFESSIONAL SUMMARY</h3>
+            <p>"Seeking an entry-level opportunity in software engineering to apply my academic foundation in computer science, strengthen my expertise in full-stack development, and contribute to innovative projects. Eager to learn modern technologies and grow as a software developer while delivering quality solutions."</p>
+          </div>
+
+          <div class="resume-block">
+            <h3>TECHNICAL SKILLS</h3>
+            <p><strong>Languages:</strong> Python, C, C++, JavaScript, SQL (PostgreSQL, MySQL), HTML5, CSS3</p>
+            <p><strong>Frameworks & Libraries:</strong> Django, Django REST Framework (DRF), Next.js, React, Tailwind CSS, Framer Motion, Streamlit, Pandas</p>
+            <p><strong>Databases & Cloud:</strong> PostgreSQL, MongoDB, MySQL, Supabase, Git, GitHub, Postman, Vercel, Railway</p>
+            <p><strong>Core CS & Architecture:</strong> RESTful APIs, JWT Authentication, RBAC, Data Structures & Algorithms, DBMS, OOP, Operating Systems</p>
+          </div>
+
+          <div class="resume-block">
+            <h3>WORK EXPERIENCE</h3>
+            <div class="resume-exp-item">
+              <div class="r-row"><strong>Goldenhat Technologies</strong><span>June 2026 – Present</span></div>
+              <div class="r-row"><em>Software Engineer Intern</em><span>Remote</span></div>
+              <ul>
+                <li>Developing and maintaining responsive web applications and scalable backend services using Next.js, React, and Python.</li>
+                <li>Architecting secure RESTful API endpoints, optimizing PostgreSQL queries, and reducing server response latency.</li>
+              </ul>
+            </div>
+            <div class="resume-exp-item">
+              <div class="r-row"><strong>Navodita Infotech</strong><span>July 2025 – August 2025</span></div>
+              <div class="r-row"><em>Python Developer Intern</em><span>Remote</span></div>
+              <ul>
+                <li>Engineered automated Python data processing scripts, increasing dataset processing throughput by 25%.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="resume-block">
+            <h3>EDUCATION</h3>
+            <div class="r-row"><strong>Jaipur Engineering College and Research Centre (JECRC)</strong><span>Expected 2026</span></div>
+            <div class="r-row"><em>B.Tech in Computer Science and Engineering | CGPA: 6.82</em><span>Jaipur, India</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="section bg-alt" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Get in Touch</span>
+        <h2 class="section-title">Contact Me</h2>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info-card">
+          <h3>Let's talk about opportunities!</h3>
+          <p>
+            I'm currently seeking software engineering and full-stack developer roles. Whether you have an opportunity, a project to collaborate on, or just want to say hi, feel free to reach out.
+          </p>
+
+          <div class="contact-details-list">
+            <div class="contact-detail-item">
+              <div class="detail-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div>
+                <strong>Email</strong>
+                <a href="mailto:jainyatin693@gmail.com">jainyatin693@gmail.com</a>
+              </div>
+            </div>
+
+            <div class="contact-detail-item">
+              <div class="detail-icon"><i class="fa-solid fa-phone"></i></div>
+              <div>
+                <strong>Phone</strong>
+                <a href="tel:+917357910535">+91 7357910535</a>
+              </div>
+            </div>
+
+            <div class="contact-detail-item">
+              <div class="detail-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <div>
+                <strong>Location</strong>
+                <span>Jaipur, Rajasthan, India</span>
+              </div>
+            </div>
+
+            <div class="contact-detail-item">
+              <div class="detail-icon"><i class="fa-brands fa-linkedin"></i></div>
+              <div>
+                <strong>LinkedIn</strong>
+                <a href="https://linkedin.com/in/yatinjain75" target="_blank">linkedin.com/in/yatinjain75</a>
               </div>
             </div>
           </div>
-          <div class="lock-swipe-hint" onclick="AndroidOS.unlockScreen()">
-            <i class="fa-solid fa-chevron-up bounce-anim"></i>
-            <span>Swipe up or tap to unlock</span>
-          </div>
         </div>
 
-        <!-- 1. ANDROID STATUS BAR (Top Bar) -->
-        <header class="android-status-bar" id="android-status-bar" onclick="AndroidOS.toggleNotificationShade()">
-          <div class="status-left">
-            <span class="status-clock" id="status-clock">14:15</span>
-            <div class="status-notif-badges">
-              <i class="fa-solid fa-envelope status-notif-icon"></i>
-              <i class="fa-brands fa-github status-notif-icon"></i>
-              <i class="fa-solid fa-briefcase status-notif-icon"></i>
-            </div>
-          </div>
-          <div class="status-right">
-            <i class="fa-solid fa-signal" title="Signal Strength"></i>
-            <span class="status-net-type">5G</span>
-            <i class="fa-solid fa-wifi" title="Wi-Fi 6 Connected"></i>
-            <div class="status-battery" title="Battery: 100%">
-              <div class="battery-fill" id="status-battery-fill"></div>
-            </div>
-            <span class="status-battery-pct">100%</span>
-          </div>
-        </header>
-
-        <!-- 2. NOTIFICATION SHADE & QUICK SETTINGS (Pull-down) -->
-        <div class="notification-shade" id="notification-shade">
-          <!-- Shade Header -->
-          <div class="shade-header">
-            <div class="shade-clock-wrapper">
-              <h2 id="shade-time">14:15</h2>
-              <span id="shade-date">Saturday, Sep 19</span>
-            </div>
-            <div class="shade-header-actions">
-              <button class="shade-header-btn" onclick="AndroidOS.openApp('settings')" title="Android Settings"><i class="fa-solid fa-gear"></i></button>
-              <button class="shade-header-btn" onclick="AndroidOS.toggleNotificationShade()" title="Close Shade"><i class="fa-solid fa-chevron-up"></i></button>
-            </div>
-          </div>
-
-          <!-- Brightness Slider -->
-          <div class="brightness-slider-row">
-            <i class="fa-solid fa-sun-plant-wilt"></i>
-            <input type="range" id="brightness-slider" min="30" max="100" value="100" oninput="AndroidOS.setBrightness(this.value)">
-            <i class="fa-solid fa-sun"></i>
-          </div>
-
-          <!-- Quick Settings Tiles (8 Tiles) -->
-          <div class="quick-settings-grid">
-            <div class="qs-tile active" onclick="AndroidOS.toggleQS(this, 'Wi-Fi')">
-              <div class="qs-circle"><i class="fa-solid fa-wifi"></i></div>
-              <span>Wi-Fi</span>
-            </div>
-            <div class="qs-tile active" onclick="AndroidOS.toggleQS(this, 'Bluetooth')">
-              <div class="qs-circle"><i class="fa-brands fa-bluetooth-b"></i></div>
-              <span>Bluetooth</span>
-            </div>
-            <div class="qs-tile active" id="qs-night-light" onclick="AndroidOS.toggleNightLight()">
-              <div class="qs-circle"><i class="fa-solid fa-moon"></i></div>
-              <span>Night Light</span>
-            </div>
-            <div class="qs-tile active" onclick="AndroidOS.toggleQS(this, 'Do Not Disturb')">
-              <div class="qs-circle"><i class="fa-solid fa-bell-slash"></i></div>
-              <span>DND</span>
-            </div>
-            <div class="qs-tile" onclick="AndroidOS.toggleQS(this, 'Flashlight')">
-              <div class="qs-circle"><i class="fa-solid fa-bolt"></i></div>
-              <span>Flashlight</span>
-            </div>
-            <div class="qs-tile active" onclick="AndroidOS.toggleQS(this, 'Auto-rotate')">
-              <div class="qs-circle"><i class="fa-solid fa-rotate"></i></div>
-              <span>Auto-rotate</span>
-            </div>
-            <div class="qs-tile" onclick="AndroidOS.toggleQS(this, 'Battery Saver')">
-              <div class="qs-circle"><i class="fa-solid fa-battery-half"></i></div>
-              <span>Battery Saver</span>
-            </div>
-            <div class="qs-tile active" id="qs-sound-tile" onclick="AndroidOS.toggleSound()">
-              <div class="qs-circle"><i class="fa-solid fa-volume-high"></i></div>
-              <span>Sound</span>
-            </div>
-          </div>
-
-          <!-- Notification Feed -->
-          <div class="shade-notifications-feed">
-            <div class="shade-notif-card" onclick="AndroidOS.openApp('gmail'); AndroidOS.toggleNotificationShade();">
-              <div class="shade-notif-header">
-                <span class="app-tag"><i class="fa-solid fa-envelope" style="color:#ea4335"></i> Gmail • Now</span>
-                <span class="notif-time">14:10</span>
-              </div>
-              <strong class="notif-title">Hire Opportunity: Yatin Jain</strong>
-              <p class="notif-body">Candidate is open to full-time Software Engineer & Intern roles. Tap to write an email or view contact details.</p>
-              <div class="notif-actions-row">
-                <button class="notif-action-pill" onclick="event.stopPropagation(); AndroidOS.openApp('gmail'); AndroidOS.toggleNotificationShade();">Reply</button>
-                <button class="notif-action-pill" onclick="event.stopPropagation(); AndroidOS.openApp('files'); AndroidOS.toggleNotificationShade();">View Resume</button>
-              </div>
+        <div class="contact-form-card">
+          <form id="contact-form" onsubmit="event.preventDefault(); sendPortfolioMail();">
+            <div class="form-group">
+              <label for="contact-name">Your Name</label>
+              <input type="text" id="contact-name" placeholder="John Doe" required>
             </div>
 
-            <div class="shade-notif-card" onclick="AndroidOS.openApp('chrome'); AndroidOS.toggleNotificationShade();">
-              <div class="shade-notif-header">
-                <span class="app-tag"><i class="fa-brands fa-chrome" style="color:#3b82f6"></i> Chrome • 25m ago</span>
-                <span class="notif-time">13:50</span>
-              </div>
-              <strong class="notif-title">Baba Ratna Plant Zone ERP Live!</strong>
-              <p class="notif-body">Agricultural ERP deployed to production with Next.js, Supabase RBAC, and PIN auth.</p>
+            <div class="form-group">
+              <label for="contact-email">Your Email</label>
+              <input type="email" id="contact-email" placeholder="john@company.com" required>
             </div>
-          </div>
 
-          <!-- Pull Handle -->
-          <div class="shade-pull-handle" onclick="AndroidOS.toggleNotificationShade()">
-            <div class="pull-bar"></div>
-          </div>
+            <div class="form-group">
+              <label for="contact-subject">Subject</label>
+              <input type="text" id="contact-subject" placeholder="Opportunity / Project Collaboration" required>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-message">Message</label>
+              <textarea id="contact-message" rows="5" placeholder="Hi Yatin, I reviewed your profile..." required></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" id="contact-submit-btn" class="btn btn-primary">
+                <i class="fa-solid fa-paper-plane"></i> Send Message
+              </button>
+              <button type="button" onclick="openDirectGmail()" class="btn btn-secondary">
+                <i class="fa-brands fa-google"></i> Open in Gmail
+              </button>
+            </div>
+
+            <div id="contact-feedback" class="form-feedback"></div>
+          </form>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- 3. HOME SCREEN -->
-        <main class="home-screen" id="home-screen">
-          <!-- Google "At a Glance" Widget -->
-          <div class="at-a-glance-box" onclick="AndroidOS.openApp('clock')">
-            <div class="glance-primary" id="glance-primary">Saturday, Sep 19</div>
-            <div class="glance-secondary">
-              <span><i class="fa-solid fa-sun-plant-wilt"></i> 32°C Sunny • Jaipur</span>
-              <span class="dot-sep">•</span>
-              <span class="job-chip"><i class="fa-solid fa-briefcase"></i> Goldenhat Tech</span>
-            </div>
-          </div>
-
-          <!-- Main Home Apps Grid (4 x 3) -->
-          <div class="home-app-grid">
-            <div class="app-item" onclick="AndroidOS.openApp('phone')">
-              <div class="app-icon-squircle icon-phone"><i class="fa-solid fa-phone"></i></div>
-              <span class="app-title">Phone</span>
-            </div>
-
-            <div class="app-item" onclick="AndroidOS.openApp('gmail')">
-              <div class="app-icon-squircle icon-gmail"><i class="fa-solid fa-envelope"></i></div>
-              <span class="app-title">Gmail</span>
-            </div>
-
-            <div class="app-item" onclick="AndroidOS.openApp('chrome')">
-              <div class="app-icon-squircle icon-chrome"><i class="fa-brands fa-chrome"></i></div>
-              <span class="app-title">Projects</span>
-            </div>
-
-            <div class="app-item" onclick="AndroidOS.openApp('files')">
-              <div class="app-icon-squircle icon-files"><i class="fa-solid fa-file-pdf"></i></div>
-              <span class="app-title">Resume</span>
-            </div>
-
-            <div class="app-item" onclick="AndroidOS.openApp('settings')">
-              <div class="app-icon-squircle icon-settings"><i class="fa-solid fa-gear"></i></div>
-              <span class="app-title">Settings</span>
-            </div>
-
-            <div class="app-item" onclick="AndroidOS.openApp('calendar')">
-              <div class="app-icon-squircle icon-calendar"><i class="fa-solid fa-calendar-days"></i></div>
-              <span class="app-title">Experience</span>
-            </div>
-
-            <div class="app-item" onclick="AndroidOS.openApp('termux')">
-              <div class="app-icon-squircle icon-termux"><i class="fa-solid fa-terminal"></i></div>
-              <span class="app-title">Termux</span>
-            </div>
-
-            <div class="app-item" onclick="AndroidOS.openApp('keep')">
-              <div class="app-icon-squircle icon-keep"><i class="fa-solid fa-note-sticky"></i></div>
-              <span class="app-title">Notes</span>
-            </div>
-
-            <div class="app-item" onclick="AndroidOS.openApp('calc')">
-              <div class="app-icon-squircle icon-calc"><i class="fa-solid fa-calculator"></i></div>
-              <span class="app-title">Calculator</span>
-            </div>
-
-            <div class="app-item" onclick="AndroidOS.openApp('clock')">
-              <div class="app-icon-squircle icon-clock"><i class="fa-regular fa-clock"></i></div>
-              <span class="app-title">Clock</span>
-            </div>
-
-            <a href="https://linkedin.com/in/yatinjain75" target="_blank" class="app-item">
-              <div class="app-icon-squircle icon-linkedin"><i class="fa-brands fa-linkedin-in"></i></div>
-              <span class="app-title">LinkedIn</span>
-            </a>
-
-            <a href="https://github.com/yatinjain75" target="_blank" class="app-item">
-              <div class="app-icon-squircle icon-github"><i class="fa-brands fa-github"></i></div>
-              <span class="app-title">GitHub</span>
-            </a>
-          </div>
-
-          <!-- Google Search Bar Pill -->
-          <div class="google-search-pill" onclick="AndroidOS.toggleAppDrawer()">
-            <div class="g-letter">
-              <span style="color:#4285f4">G</span><span style="color:#ea4335">o</span><span style="color:#fbbc05">o</span><span style="color:#4285f4">g</span><span style="color:#34a853">l</span><span style="color:#ea4335">e</span>
-            </div>
-            <span class="g-hint">Search Yatin's apps, skills...</span>
-            <i class="fa-solid fa-microphone g-mic"></i>
-            <i class="fa-solid fa-camera g-lens"></i>
-          </div>
-
-          <!-- Bottom Pinned Dock -->
-          <div class="bottom-dock">
-            <div class="dock-item" onclick="AndroidOS.openApp('phone')" title="Phone Dialer">
-              <div class="app-icon-squircle icon-phone"><i class="fa-solid fa-phone"></i></div>
-            </div>
-            <div class="dock-item" onclick="AndroidOS.openApp('gmail')" title="Gmail">
-              <div class="app-icon-squircle icon-gmail"><i class="fa-solid fa-envelope"></i></div>
-            </div>
-            <div class="dock-item" onclick="AndroidOS.openApp('chrome')" title="Chrome Projects">
-              <div class="app-icon-squircle icon-chrome"><i class="fa-brands fa-chrome"></i></div>
-            </div>
-            <div class="dock-item" onclick="AndroidOS.openApp('files')" title="Resume PDF">
-              <div class="app-icon-squircle icon-files"><i class="fa-solid fa-file-pdf"></i></div>
-            </div>
-            <div class="dock-item" onclick="AndroidOS.toggleAppDrawer()" title="All Apps Drawer">
-              <div class="app-icon-squircle icon-drawer"><i class="fa-solid fa-chevron-up"></i></div>
-            </div>
-          </div>
-        </main>
-
-        <!-- 4. APP DRAWER (Swipe Up / Search) -->
-        <div class="app-drawer" id="app-drawer">
-          <div class="drawer-search-row">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="drawer-search-input" placeholder="Search apps & skills..." oninput="AndroidOS.filterDrawerApps(this.value)">
-            <button class="drawer-close-btn" onclick="AndroidOS.toggleAppDrawer()"><i class="fa-solid fa-xmark"></i></button>
-          </div>
-          <div class="drawer-grid" id="drawer-apps-list">
-            <!-- Populated dynamically via JS -->
-          </div>
-        </div>
-
-        <!-- 5. RECENTS / MULTITASKING OVERVIEW (▢ Button) -->
-        <div class="recents-overview" id="recents-overview">
-          <div class="recents-header">
-            <h3>Recent Apps</h3>
-            <button class="clear-recents-btn" onclick="AndroidOS.clearAllRecents()">Clear all</button>
-          </div>
-          <div class="recents-carousel" id="recents-carousel">
-            <!-- Dynamic task cards populated by JS -->
-          </div>
-          <div class="recents-empty" id="recents-empty" style="display:none;">
-            <i class="fa-solid fa-mobile-screen"></i>
-            <p>No recent apps open</p>
-          </div>
-        </div>
-
-        <!-- 6. ACTIVE APP CONTAINER (Full-Screen App Window) -->
-        <div class="active-app-viewer" id="active-app-viewer">
-          <div class="app-top-bar" id="app-top-bar">
-            <button class="app-nav-back" onclick="AndroidOS.goBack()"><i class="fa-solid fa-arrow-left"></i></button>
-            <span class="app-top-title" id="app-top-title">Application</span>
-            <div class="app-top-actions" id="app-top-actions">
-              <button class="app-top-btn" onclick="AndroidOS.goHome()" title="Home"><i class="fa-solid fa-house"></i></button>
-            </div>
-          </div>
-          <div class="app-viewport-content" id="app-viewport-content">
-            <!-- Injected dynamically by AppRegistry -->
-          </div>
-        </div>
-
-        <!-- 7. NAVIGATION BAR (Oreo 3-Button & Android 10 Gesture Bar) -->
-        <nav class="android-nav-bar" id="android-nav-bar">
-          <!-- Oreo 3-Button Navigation (Back, Home, Recents) -->
-          <div class="oreo-nav-buttons" id="oreo-nav-buttons">
-            <button class="oreo-btn" id="oreo-btn-back" onclick="AndroidOS.goBack()" title="Back">
-              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-            </button>
-            <button class="oreo-btn" id="oreo-btn-home" onclick="AndroidOS.goHome()" title="Home">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" fill="currentColor"/></svg>
-            </button>
-            <button class="oreo-btn" id="oreo-btn-recents" onclick="AndroidOS.toggleRecents()" title="Overview / Recents">
-              <svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="1.5" fill="currentColor"/></svg>
-            </button>
-          </div>
-
-          <!-- Android 10 Gesture Bar (Pill) -->
-          <div class="gesture-nav-pill" id="gesture-nav-pill" onclick="AndroidOS.goHome()">
-            <div class="gesture-line"></div>
-          </div>
-        </nav>
-
-      </div><!-- /.phone-screen -->
-    </div><!-- /.phone-frame -->
-  </div><!-- /.device-wrapper -->
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <p>&copy; 2026 Yatin Jain. Built with clean HTML, CSS, and JavaScript.</p>
+      <div class="footer-links">
+        <a href="https://github.com/yatinjain75" target="_blank"><i class="fa-brands fa-github"></i></a>
+        <a href="https://linkedin.com/in/yatinjain75" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="mailto:jainyatin693@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
