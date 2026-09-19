@@ -16,7 +16,7 @@ function initTheme() {
   const themeToggleBtn = document.getElementById('theme-toggle');
   if (!themeToggleBtn) return;
 
-  const savedTheme = localStorage.getItem('yj_theme') || 'dark';
+  const savedTheme = localStorage.getItem('yj_theme') || 'light';
   applyTheme(savedTheme);
 
   themeToggleBtn.addEventListener('click', () => {
@@ -29,19 +29,19 @@ function initTheme() {
 
 function applyTheme(theme) {
   const themeToggleBtn = document.getElementById('theme-toggle');
-  if (theme === 'light') {
-    document.body.classList.remove('dark-theme');
-    document.body.classList.add('light-theme');
-    if (themeToggleBtn) {
-      themeToggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-      themeToggleBtn.setAttribute('title', 'Switch to Dark Mode');
-    }
-  } else {
+  if (theme === 'dark') {
     document.body.classList.remove('light-theme');
     document.body.classList.add('dark-theme');
     if (themeToggleBtn) {
-      themeToggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+      themeToggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
       themeToggleBtn.setAttribute('title', 'Switch to Light Mode');
+    }
+  } else {
+    document.body.classList.remove('dark-theme');
+    document.body.classList.add('light-theme');
+    if (themeToggleBtn) {
+      themeToggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+      themeToggleBtn.setAttribute('title', 'Switch to Dark Mode');
     }
   }
 }
@@ -203,4 +203,38 @@ function openDirectGmail() {
   const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=jainyatin693@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   
   window.open(gmailUrl, '_blank');
+}
+
+// ============================================================================
+// 6. RESUME 1-PAGE PRINT HANDLER
+// ============================================================================
+function printResumePDF() {
+  const pdfUrl = 'Yatin_Jain_Resume.pdf';
+
+  // Create or reuse hidden iframe to trigger PDF print dialog
+  let printFrame = document.getElementById('resume-print-iframe');
+  if (!printFrame) {
+    printFrame = document.createElement('iframe');
+    printFrame.id = 'resume-print-iframe';
+    printFrame.style.position = 'fixed';
+    printFrame.style.right = '0';
+    printFrame.style.bottom = '0';
+    printFrame.style.width = '0';
+    printFrame.style.height = '0';
+    printFrame.style.border = '0';
+    printFrame.style.opacity = '0';
+    document.body.appendChild(printFrame);
+  }
+
+  printFrame.src = pdfUrl;
+
+  printFrame.onload = function() {
+    try {
+      printFrame.contentWindow.focus();
+      printFrame.contentWindow.print();
+    } catch (err) {
+      // Fallback: Open in new tab where browser's native PDF viewer enables instant 1-page print
+      window.open(pdfUrl, '_blank');
+    }
+  };
 }

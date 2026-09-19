@@ -15,7 +15,7 @@
   
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="dark-theme">
+<body class="light-theme">
 
   <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
@@ -431,69 +431,30 @@
   <section class="section" id="resume">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Document</span>
+        <span class="section-tag">Official Document</span>
         <h2 class="section-title">Resume</h2>
       </div>
 
       <div class="resume-wrapper">
         <div class="resume-actions-bar">
-          <a href="Yatin_Jain_Resume.pdf" download="Yatin_Jain_Resume.pdf" class="btn btn-primary">
+          <a href="Yatin_Jain_Resume.pdf" download="Yatin_Jain_Resume.pdf" class="btn btn-primary" title="Download 1-Page PDF">
             <i class="fa-solid fa-download"></i> Download PDF
           </a>
-          <button onclick="window.print()" class="btn btn-secondary">
+          <button type="button" onclick="printResumePDF()" class="btn btn-secondary" title="Print 1-Page Resume">
             <i class="fa-solid fa-print"></i> Print Resume
           </button>
+          <a href="Yatin_Jain_Resume.pdf" target="_blank" class="btn btn-outline" title="Open Full PDF in New Tab">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Open in New Tab
+          </a>
         </div>
 
-        <div class="resume-paper">
-          <div class="resume-sheet-header">
-            <h1>YATIN JAIN</h1>
-            <p class="resume-sub">Software Engineer | Full-Stack & Backend Developer</p>
-            <p class="resume-contact-row">
-              <span>Jaipur, Rajasthan, India</span> • 
-              <span>+91 7357910535</span> • 
-              <a href="mailto:jainyatin693@gmail.com">jainyatin693@gmail.com</a> • 
-              <a href="https://linkedin.com/in/yatinjain75" target="_blank">linkedin.com/in/yatinjain75</a> • 
-              <a href="https://github.com/yatinjain75" target="_blank">github.com/yatinjain75</a>
-            </p>
-          </div>
-
-          <div class="resume-block">
-            <h3>PROFESSIONAL SUMMARY</h3>
-            <p>"Seeking an entry-level opportunity in software engineering to apply my academic foundation in computer science, strengthen my expertise in full-stack development, and contribute to innovative projects. Eager to learn modern technologies and grow as a software developer while delivering quality solutions."</p>
-          </div>
-
-          <div class="resume-block">
-            <h3>TECHNICAL SKILLS</h3>
-            <p><strong>Languages:</strong> Python, C, C++, JavaScript, SQL (PostgreSQL, MySQL), HTML5, CSS3</p>
-            <p><strong>Frameworks & Libraries:</strong> Django, Django REST Framework (DRF), Next.js, React, Tailwind CSS, Framer Motion, Streamlit, Pandas</p>
-            <p><strong>Databases & Cloud:</strong> PostgreSQL, MongoDB, MySQL, Supabase, Git, GitHub, Postman, Vercel, Railway</p>
-            <p><strong>Core CS & Architecture:</strong> RESTful APIs, JWT Authentication, RBAC, Data Structures & Algorithms, DBMS, OOP, Operating Systems</p>
-          </div>
-
-          <div class="resume-block">
-            <h3>WORK EXPERIENCE</h3>
-            <div class="resume-exp-item">
-              <div class="r-row"><strong>Goldenhat Technologies</strong><span>June 2026 – Present</span></div>
-              <div class="r-row"><em>Software Engineer Intern</em><span>Remote</span></div>
-              <ul>
-                <li>Developing and maintaining responsive web applications and scalable backend services using Next.js, React, and Python.</li>
-                <li>Architecting secure RESTful API endpoints, optimizing PostgreSQL queries, and reducing server response latency.</li>
-              </ul>
-            </div>
-            <div class="resume-exp-item">
-              <div class="r-row"><strong>Navodita Infotech</strong><span>July 2025 – August 2025</span></div>
-              <div class="r-row"><em>Python Developer Intern</em><span>Remote</span></div>
-              <ul>
-                <li>Engineered automated Python data processing scripts, increasing dataset processing throughput by 25%.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="resume-block">
-            <h3>EDUCATION</h3>
-            <div class="r-row"><strong>Jaipur Engineering College and Research Centre (JECRC)</strong><span>Expected 2026</span></div>
-            <div class="r-row"><em>B.Tech in Computer Science and Engineering | CGPA: 6.82</em><span>Jaipur, India</span></div>
+        <div class="resume-page-container">
+          <img src="Yatin_Jain_Resume_preview.png" alt="Yatin Jain - Software Engineer Resume (1 Page)" class="resume-page-img" loading="lazy">
+          <div class="resume-footer-bar">
+            <span><i class="fa-solid fa-file-pdf"></i> Yatin_Jain_Resume.pdf (1-Page Verified Resume)</span>
+            <a href="Yatin_Jain_Resume.pdf" target="_blank">
+              Open Raw PDF <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
           </div>
         </div>
       </div>
