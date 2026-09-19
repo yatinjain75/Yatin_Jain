@@ -845,49 +845,12 @@ function copyContact() {
 }
 
 /* ==========================================================================
-   10. ANDROID 10 OS LOGIC & MOBILE VIEWER
+   10. ANDROID 10 OS LOGIC (AUTOMATIC FOR MOBILE VIEW)
    ========================================================================== */
-
-let currentOSMode = 'windows';
 
 function initAndroidOS() {
   initAndroidClock();
   initAndroidDrawer();
-
-  // Auto detect mobile screen
-  if (window.innerWidth <= 768) {
-    setOSMode('android');
-  }
-
-  window.addEventListener('resize', () => {
-    if (window.innerWidth <= 768 && currentOSMode !== 'android') {
-      setOSMode('android');
-    }
-  });
-}
-
-function toggleOSMode() {
-  if (currentOSMode === 'windows') {
-    setOSMode('android');
-  } else {
-    setOSMode('windows');
-  }
-}
-
-function setOSMode(mode) {
-  currentOSMode = mode;
-  const switchText = document.getElementById('os-switch-text');
-  const switchBtn = document.getElementById('os-switch-btn');
-
-  if (mode === 'android') {
-    document.body.classList.add('os-android');
-    if (switchText) switchText.textContent = 'Switch to Windows 10';
-    if (switchBtn) switchBtn.querySelector('i').className = 'fa-brands fa-windows';
-  } else {
-    document.body.classList.remove('os-android');
-    if (switchText) switchText.textContent = 'Switch to Android 10';
-    if (switchBtn) switchBtn.querySelector('i').className = 'fa-solid fa-mobile-screen-button';
-  }
 }
 
 function initAndroidClock() {

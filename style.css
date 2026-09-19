@@ -2192,47 +2192,7 @@ body.night-light::after {
 }
 
 /* ==========================================================================
-   OS SWITCHER (FLOATING BUTTON)
-   ========================================================================== */
-
-.os-switcher {
-  position: fixed;
-  top: 10px;
-  right: 14px;
-  z-index: 9999999;
-}
-
-.os-switch-btn {
-  background: rgba(20, 24, 33, 0.85);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 20px;
-  padding: 6px 14px;
-  font-size: 11.5px;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
-  transition: all 0.2s ease;
-}
-
-.os-switch-btn:hover {
-  background: #0078d7;
-  border-color: #ffffff;
-  transform: translateY(-1px);
-}
-
-.os-switch-btn i {
-  font-size: 13px;
-  color: #38bdf8;
-}
-
-/* ==========================================================================
-   ANDROID 10 OS ENVIRONMENT
+   ANDROID 10 OS ENVIRONMENT (RESPONSIVE AUTO SWITCH)
    ========================================================================== */
 
 .android-environment {
@@ -2245,13 +2205,9 @@ body.night-light::after {
   right: 0;
   bottom: 0;
   z-index: 100000;
-  background: radial-gradient(circle at center, #1e293b 0%, #090d16 100%);
+  background: #000000;
   align-items: center;
   justify-content: center;
-}
-
-body.os-android .android-environment {
-  display: flex;
 }
 
 body.os-android #desktop,
@@ -2854,11 +2810,11 @@ body.os-android #context-menu {
 }
 
 /* ==========================================================================
-   MOBILE FULL-SCREEN MODE (< 768px)
+   AUTOMATIC DEVICE SWITCHING (< 768px: Android 10, > 768px: Windows 10)
    ========================================================================== */
 
 @media (max-width: 768px) {
-  /* Hide Windows 10 by default on mobile */
+  /* Hide Windows 10 automatically on mobile */
   #desktop,
   #taskbar,
   #start-menu,
@@ -2868,7 +2824,7 @@ body.os-android #context-menu {
     display: none !important;
   }
 
-  /* Show Android 10 full screen on mobile */
+  /* Show Android 10 full screen automatically on mobile */
   .android-environment {
     display: flex !important;
     background: #000000;
@@ -2884,17 +2840,14 @@ body.os-android #context-menu {
   }
 
   .android-camera-hole {
-    display: none;
+    display: none !important;
   }
+}
 
-  .os-switcher {
-    top: 6px;
-    right: 8px;
-  }
-
-  .os-switch-btn {
-    padding: 4px 10px;
-    font-size: 10.5px;
+@media (min-width: 769px) {
+  /* On desktop/laptop, ensure Android environment is completely hidden */
+  .android-environment {
+    display: none !important;
   }
 }
 
