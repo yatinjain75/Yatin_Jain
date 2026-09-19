@@ -1270,7 +1270,244 @@ Looking forward to connecting!
       <!-- Show Desktop Peek -->
       <div class="peek-desktop" id="peek-desktop" title="Show desktop"></div>
     </div>
-  </footer>
+  <!-- FLOATING OS SWITCHER (WINDOWS 10 <-> ANDROID 10) -->
+  <div class="os-switcher" id="os-switcher">
+    <button class="os-switch-btn" id="os-switch-btn" onclick="toggleOSMode()" title="Switch OS Theme">
+      <i class="fa-solid fa-mobile-screen-button"></i>
+      <span id="os-switch-text">Switch to Android 10</span>
+    </button>
+  </div>
+
+  <!-- ANDROID 10 OS ENVIRONMENT (FOR MOBILE & EMULATOR) -->
+  <div id="android-environment" class="android-environment">
+    <div class="android-phone-frame">
+      <!-- Camera Punch Hole & Speaker -->
+      <div class="android-camera-hole"></div>
+      
+      <!-- Android Screen -->
+      <div class="android-screen">
+        
+        <!-- 1. Android Status Bar -->
+        <div class="android-status-bar" id="android-status-bar" onclick="toggleAndroidNotificationShade()">
+          <div class="status-left">
+            <span id="android-clock-time">14:04</span>
+            <div class="status-notif-icons">
+              <i class="fa-solid fa-envelope"></i>
+              <i class="fa-brands fa-github"></i>
+              <i class="fa-solid fa-code"></i>
+            </div>
+          </div>
+          <div class="status-right">
+            <i class="fa-solid fa-wifi"></i>
+            <span class="net-text">5G</span>
+            <div class="battery-icon">
+              <div class="battery-level"></div>
+            </div>
+            <span class="battery-pct">100%</span>
+          </div>
+        </div>
+
+        <!-- 2. Android Notification Shade / Quick Settings -->
+        <div class="android-shade" id="android-shade">
+          <div class="shade-header">
+            <div class="shade-clock-date">
+              <h2 id="shade-time">14:04</h2>
+              <span id="shade-date">Sat, Sep 19</span>
+            </div>
+            <div class="shade-header-icons">
+              <button class="shade-icon-btn" onclick="openAndroidApp('settings')"><i class="fa-solid fa-gear"></i></button>
+              <button class="shade-icon-btn" onclick="toggleAndroidNotificationShade()"><i class="fa-solid fa-chevron-up"></i></button>
+            </div>
+          </div>
+
+          <!-- Quick Settings Tiles Grid -->
+          <div class="quick-tiles-grid">
+            <div class="quick-tile active">
+              <div class="tile-circle"><i class="fa-solid fa-wifi"></i></div>
+              <span>Wi-Fi</span>
+            </div>
+            <div class="quick-tile active">
+              <div class="tile-circle"><i class="fa-brands fa-bluetooth-b"></i></div>
+              <span>Bluetooth</span>
+            </div>
+            <div class="quick-tile active" onclick="toggleAndroidNightLight()" id="android-night-tile">
+              <div class="tile-circle"><i class="fa-solid fa-moon"></i></div>
+              <span>Night Light</span>
+            </div>
+            <div class="quick-tile active">
+              <div class="tile-circle"><i class="fa-solid fa-bell-slash"></i></div>
+              <span>Do Not Disturb</span>
+            </div>
+            <div class="quick-tile">
+              <div class="tile-circle"><i class="fa-solid fa-bolt"></i></div>
+              <span>Flashlight</span>
+            </div>
+            <div class="quick-tile">
+              <div class="tile-circle"><i class="fa-solid fa-rotate"></i></div>
+              <span>Auto-rotate</span>
+            </div>
+          </div>
+
+          <!-- Notifications Section -->
+          <div class="shade-notifications">
+            <div class="android-notif-card" onclick="openAndroidApp('gmail'); toggleAndroidNotificationShade();">
+              <div class="notif-top">
+                <div class="notif-app-info">
+                  <i class="fa-solid fa-envelope notif-app-icon gmail"></i>
+                  <span>Gmail • Just now</span>
+                </div>
+                <span class="notif-time-ago">now</span>
+              </div>
+              <strong class="notif-headline">Yatin Jain &lt;jainyatin693@gmail.com&gt;</strong>
+              <p class="notif-snippet">Open to Software Engineering opportunities. Tap to contact or send a message!</p>
+            </div>
+
+            <div class="android-notif-card" onclick="openAndroidApp('chrome'); toggleAndroidNotificationShade();">
+              <div class="notif-top">
+                <div class="notif-app-info">
+                  <i class="fa-brands fa-chrome notif-app-icon chrome"></i>
+                  <span>Chrome • 10m ago</span>
+                </div>
+              </div>
+              <strong class="notif-headline">Baba Ratna Plant Zone ERP Live</strong>
+              <p class="notif-snippet">Agricultural ERP with Next.js, Supabase RBAC, and PIN auth deployed to production.</p>
+            </div>
+          </div>
+
+          <div class="shade-drag-handle" onclick="toggleAndroidNotificationShade()">
+            <div class="handle-bar"></div>
+          </div>
+        </div>
+
+        <!-- 3. Android Home Screen -->
+        <div class="android-home" id="android-home">
+          <!-- At a Glance Widget -->
+          <div class="at-a-glance-widget" onclick="openAndroidApp('calendar')">
+            <div class="glance-date" id="glance-date">Saturday, Sep 19</div>
+            <div class="glance-info">
+              <span><i class="fa-solid fa-sun weather-icon"></i> Jaipur 32°C</span>
+              <span class="bullet">•</span>
+              <span><i class="fa-solid fa-briefcase"></i> Goldenhat Tech</span>
+            </div>
+          </div>
+
+          <!-- Home App Grid -->
+          <div class="android-app-grid">
+            <div class="android-icon" onclick="openAndroidApp('phone')">
+              <div class="icon-squircle phone"><i class="fa-solid fa-phone"></i></div>
+              <span>Phone</span>
+            </div>
+
+            <div class="android-icon" onclick="openAndroidApp('gmail')">
+              <div class="icon-squircle gmail"><i class="fa-solid fa-envelope"></i></div>
+              <span>Gmail</span>
+            </div>
+
+            <div class="android-icon" onclick="openAndroidApp('chrome')">
+              <div class="icon-squircle chrome"><i class="fa-brands fa-chrome"></i></div>
+              <span>Projects</span>
+            </div>
+
+            <div class="android-icon" onclick="openAndroidApp('files')">
+              <div class="icon-squircle files"><i class="fa-solid fa-folder-closed"></i></div>
+              <span>Resume</span>
+            </div>
+
+            <div class="android-icon" onclick="openAndroidApp('settings')">
+              <div class="icon-squircle settings"><i class="fa-solid fa-gear"></i></div>
+              <span>Skills & Info</span>
+            </div>
+
+            <div class="android-icon" onclick="openAndroidApp('calendar')">
+              <div class="icon-squircle calendar"><i class="fa-solid fa-calendar-days"></i></div>
+              <span>Experience</span>
+            </div>
+
+            <div class="android-icon" onclick="openAndroidApp('termux')">
+              <div class="icon-squircle termux"><i class="fa-solid fa-terminal"></i></div>
+              <span>Termux</span>
+            </div>
+
+            <div class="android-icon" onclick="openAndroidApp('keep')">
+              <div class="icon-squircle keep"><i class="fa-solid fa-note-sticky"></i></div>
+              <span>Notes</span>
+            </div>
+
+            <a href="https://linkedin.com/in/yatinjain75" target="_blank" class="android-icon">
+              <div class="icon-squircle linkedin"><i class="fa-brands fa-linkedin-in"></i></div>
+              <span>LinkedIn</span>
+            </a>
+
+            <a href="https://github.com/yatinjain75" target="_blank" class="android-icon">
+              <div class="icon-squircle github"><i class="fa-brands fa-github"></i></div>
+              <span>GitHub</span>
+            </a>
+          </div>
+
+          <!-- Google Search Bar Pill Widget -->
+          <div class="google-search-pill" onclick="toggleAndroidAppDrawer()">
+            <div class="g-logo">
+              <span style="color:#4285f4">G</span><span style="color:#ea4335">o</span><span style="color:#fbbc05">o</span><span style="color:#4285f4">g</span><span style="color:#34a853">l</span><span style="color:#ea4335">e</span>
+            </div>
+            <span class="search-hint">Search skills, projects...</span>
+            <i class="fa-solid fa-microphone mic-icon"></i>
+            <i class="fa-solid fa-camera lens-icon"></i>
+          </div>
+
+          <!-- Bottom Dock -->
+          <div class="android-dock">
+            <div class="android-icon" onclick="openAndroidApp('phone')">
+              <div class="icon-squircle phone"><i class="fa-solid fa-phone"></i></div>
+            </div>
+            <div class="android-icon" onclick="openAndroidApp('gmail')">
+              <div class="icon-squircle gmail"><i class="fa-solid fa-envelope"></i></div>
+            </div>
+            <div class="android-icon" onclick="openAndroidApp('chrome')">
+              <div class="icon-squircle chrome"><i class="fa-brands fa-chrome"></i></div>
+            </div>
+            <div class="android-icon" onclick="openAndroidApp('files')">
+              <div class="icon-squircle files"><i class="fa-solid fa-file-pdf"></i></div>
+            </div>
+            <div class="android-icon" onclick="toggleAndroidAppDrawer()">
+              <div class="icon-squircle drawer"><i class="fa-solid fa-chevron-up"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Android App Drawer -->
+        <div class="android-drawer" id="android-drawer">
+          <div class="drawer-search-bar">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="android-drawer-search" placeholder="Search apps..." oninput="filterAndroidApps(this.value)">
+            <button class="drawer-close-btn" onclick="toggleAndroidAppDrawer()"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+          <div class="drawer-apps-list" id="drawer-apps-list">
+            <!-- All apps populated by JS -->
+          </div>
+        </div>
+
+        <!-- 5. Android Active App Container (Full-screen view) -->
+        <div class="android-app-viewer" id="android-app-viewer">
+          <div class="android-app-header" id="android-app-header">
+            <button class="app-back-btn" onclick="closeAndroidApp()"><i class="fa-solid fa-arrow-left"></i></button>
+            <span class="app-header-title" id="android-app-title">App Name</span>
+            <div class="app-header-actions">
+              <button class="app-action-btn" onclick="closeAndroidApp()"><i class="fa-solid fa-house"></i></button>
+            </div>
+          </div>
+          <div class="android-app-content" id="android-app-content">
+            <!-- Injected by JS based on active app -->
+          </div>
+        </div>
+
+        <!-- 6. Android 10 Gesture Bar (Bottom) -->
+        <div class="android-gesture-bar" id="android-gesture-bar" onclick="closeAndroidApp()">
+          <div class="gesture-pill"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

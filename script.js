@@ -36,9 +36,12 @@ document.addEventListener('DOMContentLoaded', () => {
   initContextMenu();
   initTerminal();
   initDesktopSelection();
+  initAndroidOS();
 
-  // Open "About Me" and "welcome.txt" by default on initial load for a great first impression
-  openWindow('about');
+  // Open "About Me" on desktop by default
+  if (window.innerWidth > 768) {
+    openWindow('about');
+  }
 });
 
 /* ==========================================================================
@@ -839,5 +842,531 @@ function copyContact() {
       feedback.textContent = '';
     }, 3000);
   });
+}
+
+/* ==========================================================================
+   10. ANDROID 10 OS LOGIC & MOBILE VIEWER
+   ========================================================================== */
+
+let currentOSMode = 'windows';
+
+function initAndroidOS() {
+  initAndroidClock();
+  initAndroidDrawer();
+
+  // Auto detect mobile screen
+  if (window.innerWidth <= 768) {
+    setOSMode('android');
+  }
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth <= 768 && currentOSMode !== 'android') {
+      setOSMode('android');
+    }
+  });
+}
+
+function toggleOSMode() {
+  if (currentOSMode === 'windows') {
+    setOSMode('android');
+  } else {
+    setOSMode('windows');
+  }
+}
+
+function setOSMode(mode) {
+  currentOSMode = mode;
+  const switchText = document.getElementById('os-switch-text');
+  const switchBtn = document.getElementById('os-switch-btn');
+
+  if (mode === 'android') {
+    document.body.classList.add('os-android');
+    if (switchText) switchText.textContent = 'Switch to Windows 10';
+    if (switchBtn) switchBtn.querySelector('i').className = 'fa-brands fa-windows';
+  } else {
+    document.body.classList.remove('os-android');
+    if (switchText) switchText.textContent = 'Switch to Android 10';
+    if (switchBtn) switchBtn.querySelector('i').className = 'fa-solid fa-mobile-screen-button';
+  }
+}
+
+function initAndroidClock() {
+  const clockEl = document.getElementById('android-clock-time');
+  const shadeTimeEl = document.getElementById('shade-time');
+  const shadeDateEl = document.getElementById('shade-date');
+  const glanceDateEl = document.getElementById('glance-date');
+
+  function update() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const timeStr = `${hours}:${minutes}`;
+
+    if (clockEl) clockEl.textContent = timeStr;
+    if (shadeTimeEl) shadeTimeEl.textContent = timeStr;
+
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const dayName = days[now.getDay()];
+    const monthName = months[now.getMonth()];
+    const dateNum = now.getDate();
+
+    if (shadeDateEl) shadeDateEl.textContent = `${dayName.slice(0, 3)}, ${monthName} ${dateNum}`;
+    if (glanceDateEl) glanceDateEl.textContent = `${dayName}, ${monthName} ${dateNum}`;
+  }
+
+  update();
+  setInterval(update, 1000);
+}
+
+function toggleAndroidNotificationShade() {
+  const shade = document.getElementById('android-shade');
+  if (shade) shade.classList.toggle('open');
+}
+
+function toggleAndroidNightLight() {
+  document.body.classList.toggle('night-light');
+  const tile = document.getElementById('android-night-tile');
+  if (tile) tile.classList.toggle('active');
+}
+
+const androidApps = [
+  { id: 'phone', name: 'Phone', icon: 'fa-phone', color: 'phone' },
+  { id: 'gmail', name: 'Gmail', icon: 'fa-envelope', color: 'gmail' },
+  { id: 'chrome', name: 'Projects', icon: 'fa-brands fa-chrome', color: 'chrome' },
+  { id: 'files', name: 'Resume', icon: 'fa-file-pdf', color: 'files' },
+  { id: 'settings', name: 'Settings', icon: 'fa-gear', color: 'settings' },
+  { id: 'calendar', name: 'Experience', icon: 'fa-calendar-days', color: 'calendar' },
+  { id: 'termux', name: 'Termux', icon: 'fa-terminal', color: 'termux' },
+  { id: 'keep', name: 'Notes', icon: 'fa-note-sticky', color: 'keep' },
+  { id: 'linkedin', name: 'LinkedIn', icon: 'fa-brands fa-linkedin-in', color: 'linkedin', link: 'https://linkedin.com/in/yatinjain75' },
+  { id: 'github', name: 'GitHub', icon: 'fa-brands fa-github', color: 'github', link: 'https://github.com/yatinjain75' }
+];
+
+function initAndroidDrawer() {
+  const list = document.getElementById('drawer-apps-list');
+  if (!list) return;
+
+  renderDrawerApps(androidApps);
+}
+
+function renderDrawerApps(apps) {
+  const list = document.getElementById('drawer-apps-list');
+  if (!list) return;
+
+  list.innerHTML = '';
+  apps.forEach(app => {
+    const el = document.createElement('div');
+    el.className = 'android-icon';
+    el.innerHTML = `
+      <div class="icon-squircle ${app.color}"><i class="${app.icon.includes('fa-') ? app.icon : 'fa-solid ' + app.icon}"></i></div>
+      <span>${app.name}</span>
+    `;
+    el.onclick = () => {
+      if (app.link) {
+        window.open(app.link, '_blank');
+      } else {
+        openAndroidApp(app.id);
+      }
+      toggleAndroidAppDrawer();
+    };
+    list.appendChild(el);
+  });
+}
+
+function filterAndroidApps(query) {
+  const filtered = androidApps.filter(app => app.name.toLowerCase().includes(query.toLowerCase()));
+  renderDrawerApps(filtered);
+}
+
+function toggleAndroidAppDrawer() {
+  const drawer = document.getElementById('android-drawer');
+  if (drawer) drawer.classList.toggle('open');
+}
+
+function openAndroidApp(appId) {
+  const viewer = document.getElementById('android-app-viewer');
+  const title = document.getElementById('android-app-title');
+  const content = document.getElementById('android-app-content');
+
+  // Close drawer and shade if open
+  const shade = document.getElementById('android-shade');
+  if (shade) shade.classList.remove('open');
+  const drawer = document.getElementById('android-drawer');
+  if (drawer) drawer.classList.remove('open');
+
+  switch(appId) {
+    case 'phone':
+      title.textContent = 'Phone - Yatin Jain';
+      content.innerHTML = `
+        <div style="text-align: center; padding: 20px 10px;">
+          <div style="width: 80px; height: 80px; border-radius: 50%; background: #22c55e; color: #fff; font-size: 32px; font-weight: bold; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);">
+            YJ
+          </div>
+          <h2 style="font-size: 20px; color: #0f172a; margin-bottom: 4px;">Yatin Jain</h2>
+          <p style="font-size: 13px; color: #64748b; margin-bottom: 16px;">Software Engineer | Jaipur, India</p>
+          <div style="font-size: 18px; font-weight: 600; color: #0f172a; margin-bottom: 24px;">+91 7357910535</div>
+
+          <div style="display: flex; justify-content: center; gap: 16px; margin-bottom: 30px;">
+            <a href="tel:+917357910535" style="width: 56px; height: 56px; border-radius: 50%; background: #22c55e; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 20px; text-decoration: none; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);">
+              <i class="fa-solid fa-phone"></i>
+            </a>
+            <a href="mailto:jainyatin693@gmail.com" style="width: 56px; height: 56px; border-radius: 50%; background: #3b82f6; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 20px; text-decoration: none; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+            <a href="https://linkedin.com/in/yatinjain75" target="_blank" style="width: 56px; height: 56px; border-radius: 50%; background: #0a66c2; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 20px; text-decoration: none;">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; text-align: left;">
+            <div style="font-size: 12px; color: #64748b; margin-bottom: 4px;">Email</div>
+            <div style="font-size: 14px; color: #0f172a; font-weight: 500;">jainyatin693@gmail.com</div>
+            <div style="font-size: 12px; color: #64748b; margin: 12px 0 4px;">Status</div>
+            <div style="font-size: 14px; color: #16a34a; font-weight: 600;"><i class="fa-solid fa-circle" style="font-size: 8px;"></i> Available for Hire</div>
+          </div>
+        </div>
+      `;
+      break;
+
+    case 'gmail':
+      title.textContent = 'Gmail - Compose';
+      content.innerHTML = `
+        <form onsubmit="event.preventDefault(); sendAndroidMail();" style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="border-bottom: 1px solid #e2e8f0; padding: 6px 0;">
+            <label style="font-size: 11px; color: #64748b;">To:</label>
+            <input type="text" value="Yatin Jain <jainyatin693@gmail.com>" readonly style="width: 100%; border: none; background: transparent; font-weight: 500; color: #0f172a; font-size: 13px; outline: none;">
+          </div>
+          <div style="border-bottom: 1px solid #e2e8f0; padding: 6px 0;">
+            <label style="font-size: 11px; color: #64748b;">From:</label>
+            <input type="email" id="android-from-email" placeholder="your.email@company.com" required style="width: 100%; border: none; font-size: 13px; outline: none; padding: 4px 0;">
+          </div>
+          <div style="border-bottom: 1px solid #e2e8f0; padding: 6px 0;">
+            <label style="font-size: 11px; color: #64748b;">Subject:</label>
+            <input type="text" id="android-subject" placeholder="Opportunity / Collaboration" required style="width: 100%; border: none; font-size: 13px; outline: none; padding: 4px 0;">
+          </div>
+          <div>
+            <textarea id="android-body-text" placeholder="Compose email..." rows="6" required style="width: 100%; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px; font-size: 13px; font-family: inherit; resize: none; outline: none;"></textarea>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
+            <button type="submit" id="android-send-btn" style="padding: 10px; background: #ea4335; color: #fff; border: none; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+              <i class="fa-solid fa-paper-plane"></i> Send Email
+            </button>
+            <button type="button" onclick="openInGmailWeb()" style="padding: 10px; background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; border-radius: 8px; font-weight: 500; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+              <i class="fa-brands fa-google"></i> Open in Gmail Web
+            </button>
+            <span id="android-mail-feedback" style="font-size: 12px; text-align: center; margin-top: 4px;"></span>
+          </div>
+        </form>
+      `;
+      break;
+
+    case 'chrome':
+      title.textContent = 'Chrome - Featured Projects';
+      content.innerHTML = `
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          
+          <!-- Project 1 -->
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+              <h3 style="font-size: 15px; color: #0f172a;">Baba Ratna Plant Zone</h3>
+              <span style="background: #e8f5e9; color: #2e7d32; font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 600;">Production</span>
+            </div>
+            <p style="font-size: 11.5px; color: #64748b; margin-bottom: 8px;">Next.js, React, Supabase, PostgreSQL, Tailwind CSS</p>
+            <p style="font-size: 12px; color: #334155; line-height: 1.4; margin-bottom: 10px;">
+              Enterprise Agricultural ERP with Role-Based Access Control (RBAC) across Admin, Expert, & Staff roles. Built with Next.js Server Actions & Supabase Admin API.
+            </p>
+            <a href="https://github.com/yatinjain75" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #2563eb; text-decoration: none; font-weight: 500;">
+              <i class="fa-brands fa-github"></i> View Repository &rarr;
+            </a>
+          </div>
+
+          <!-- Project 2 -->
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+              <h3 style="font-size: 15px; color: #0f172a;">Library & Seat Management</h3>
+              <span style="background: #e1f0fc; color: #0078d7; font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 600;">Cloud Deployed</span>
+            </div>
+            <p style="font-size: 11.5px; color: #64748b; margin-bottom: 8px;">Python, Streamlit, MongoDB, Werkzeug</p>
+            <p style="font-size: 12px; color: #334155; line-height: 1.4; margin-bottom: 10px;">
+              Full-stack library platform automating inventory tracking, book issuance, and real-time floor seat reservations with live occupancy analytics.
+            </p>
+            <a href="https://github.com/yatinjain75" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #2563eb; text-decoration: none; font-weight: 500;">
+              <i class="fa-brands fa-github"></i> View Repository &rarr;
+            </a>
+          </div>
+
+          <!-- Project 3 -->
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+              <h3 style="font-size: 15px; color: #0f172a;">Learning Tracker Microservice</h3>
+              <span style="background: #ede7f6; color: #512da8; font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 600;">API Service</span>
+            </div>
+            <p style="font-size: 11.5px; color: #64748b; margin-bottom: 8px;">Django REST Framework, JWT, Postman</p>
+            <p style="font-size: 12px; color: #334155; line-height: 1.4; margin-bottom: 10px;">
+              RESTful backend API service for goal management, daily progress tracking, and milestone evaluations with JWT user authorization.
+            </p>
+            <a href="https://github.com/yatinjain75" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #2563eb; text-decoration: none; font-weight: 500;">
+              <i class="fa-brands fa-github"></i> View Repository &rarr;
+            </a>
+          </div>
+
+        </div>
+      `;
+      break;
+
+    case 'files':
+      title.textContent = 'Files - Yatin_Jain_Resume.pdf';
+      content.innerHTML = `
+        <div>
+          <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+            <a href="Yatin_Jain_Resume.pdf" download="Yatin_Jain_Resume.pdf" style="flex: 1; padding: 8px; background: #0284c7; color: #fff; text-align: center; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: 500;">
+              <i class="fa-solid fa-download"></i> Download PDF
+            </a>
+            <button onclick="window.print()" style="flex: 1; padding: 8px; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 12px; font-weight: 500; cursor: pointer;">
+              <i class="fa-solid fa-print"></i> Print
+            </button>
+          </div>
+          <div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; font-size: 11px; line-height: 1.45; color: #1e293b;">
+            <h2 style="font-size: 16px; text-align: center; margin-bottom: 2px;">YATIN JAIN</h2>
+            <p style="text-align: center; font-size: 10px; color: #64748b; margin-bottom: 8px;">Software Engineer | Full-Stack & Backend Developer</p>
+            <div style="border-top: 1px solid #cbd5e1; padding-top: 8px; margin-bottom: 8px;">
+              <strong>Summary:</strong> Seeking entry-level software engineering opportunity to apply academic foundation and strengthen full-stack expertise.
+            </div>
+            <div style="border-top: 1px solid #cbd5e1; padding-top: 8px; margin-bottom: 8px;">
+              <strong>Skills:</strong> Python, JavaScript, Next.js, React, Django, PostgreSQL, MongoDB, Supabase, Git, Postman.
+            </div>
+            <div style="border-top: 1px solid #cbd5e1; padding-top: 8px;">
+              <strong>Education:</strong> JECRC - B.Tech in CSE (Expected 2026, CGPA: 6.82)
+            </div>
+          </div>
+        </div>
+      `;
+      break;
+
+    case 'settings':
+      title.textContent = 'Settings - Skills & Specs';
+      content.innerHTML = `
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px;">
+            <h4 style="font-size: 13px; color: #0f172a; margin-bottom: 6px;"><i class="fa-solid fa-code" style="color: #3b82f6;"></i> Programming Languages</h4>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+              <span class="skill-chip">Python</span>
+              <span class="skill-chip">JavaScript</span>
+              <span class="skill-chip">C / C++</span>
+              <span class="skill-chip">SQL (PostgreSQL, MySQL)</span>
+              <span class="skill-chip">HTML5 / CSS3</span>
+            </div>
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px;">
+            <h4 style="font-size: 13px; color: #0f172a; margin-bottom: 6px;"><i class="fa-solid fa-cubes" style="color: #8b5cf6;"></i> Frameworks & Libraries</h4>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+              <span class="skill-chip">Next.js</span>
+              <span class="skill-chip">React</span>
+              <span class="skill-chip">Django / DRF</span>
+              <span class="skill-chip">Tailwind CSS</span>
+              <span class="skill-chip">Framer Motion</span>
+              <span class="skill-chip">Streamlit</span>
+              <span class="skill-chip">Pandas</span>
+            </div>
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px;">
+            <h4 style="font-size: 13px; color: #0f172a; margin-bottom: 6px;"><i class="fa-solid fa-database" style="color: #10b981;"></i> Databases & Cloud</h4>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+              <span class="skill-chip">PostgreSQL</span>
+              <span class="skill-chip">MongoDB</span>
+              <span class="skill-chip">Supabase</span>
+              <span class="skill-chip">Git & GitHub</span>
+              <span class="skill-chip">Postman</span>
+              <span class="skill-chip">Vercel</span>
+              <span class="skill-chip">Railway</span>
+            </div>
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px;">
+            <h4 style="font-size: 13px; color: #0f172a; margin-bottom: 6px;"><i class="fa-solid fa-award" style="color: #f59e0b;"></i> Certifications</h4>
+            <ul style="margin-left: 18px; font-size: 12px; color: #334155; line-height: 1.5;">
+              <li>MongoDB Python Developer Path (MongoDB Inc.)</li>
+              <li>Python Crash Course (Campus Code)</li>
+              <li>Music Recommendation Systems (Physics Wallah)</li>
+            </ul>
+          </div>
+        </div>
+      `;
+      break;
+
+    case 'calendar':
+      title.textContent = 'Calendar - Work Experience';
+      content.innerHTML = `
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          
+          <div style="background: #f8fafc; border-left: 4px solid #3b82f6; border-radius: 8px; padding: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2px;">
+              <strong style="font-size: 13.5px; color: #0f172a;">Software Engineer Intern</strong>
+              <span style="font-size: 10px; color: #3b82f6; background: #eff6ff; padding: 1px 6px; border-radius: 4px; font-weight: 600;">Current</span>
+            </div>
+            <div style="font-size: 12px; color: #64748b; margin-bottom: 6px;">Goldenhat Technologies • June 2026 – Present (Remote)</div>
+            <ul style="margin-left: 16px; font-size: 11.5px; color: #334155; line-height: 1.4;">
+              <li>Developing responsive web apps and scalable backend services with Next.js, React, and Python.</li>
+              <li>Architecting secure RESTful APIs and optimizing PostgreSQL queries.</li>
+            </ul>
+          </div>
+
+          <div style="background: #f8fafc; border-left: 4px solid #10b981; border-radius: 8px; padding: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+            <strong style="font-size: 13.5px; color: #0f172a;">Python Developer Intern</strong>
+            <div style="font-size: 12px; color: #64748b; margin-bottom: 6px;">Navodita Infotech • July 2025 – August 2025 (Remote)</div>
+            <ul style="margin-left: 16px; font-size: 11.5px; color: #334155; line-height: 1.4;">
+              <li>Automated Python data processing scripts, increasing dataset processing throughput by 25%.</li>
+              <li>Implemented backend application workflows and unit testing.</li>
+            </ul>
+          </div>
+
+          <div style="background: #f8fafc; border-left: 4px solid #f59e0b; border-radius: 8px; padding: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+            <strong style="font-size: 13.5px; color: #0f172a;">Data Science Intern</strong>
+            <div style="font-size: 12px; color: #64748b; margin-bottom: 6px;">SkillCraft Technology • February 2025 (Remote)</div>
+            <ul style="margin-left: 16px; font-size: 11.5px; color: #334155; line-height: 1.4;">
+              <li>Analyzed multi-dimensional datasets with Python, Pandas, and Scikit-learn.</li>
+            </ul>
+          </div>
+
+        </div>
+      `;
+      break;
+
+    case 'termux':
+      title.textContent = 'Termux - Terminal';
+      content.innerHTML = `
+        <div style="background: #000; color: #22c55e; font-family: monospace; font-size: 12px; padding: 12px; border-radius: 8px; min-height: 280px; display: flex; flex-direction: column;">
+          <div id="termux-output" style="flex: 1; overflow-y: auto; margin-bottom: 8px; line-height: 1.4;">
+            Welcome to Termux (Android 10)!<br>
+            Type <span style="color:#fff;">help</span> or <span style="color:#fff;">whoami</span> or <span style="color:#fff;">skills</span>.
+          </div>
+          <div style="display: flex; align-items: center; gap: 4px;">
+            <span style="color: #38bdf8;">$</span>
+            <input type="text" id="termux-input" autocomplete="off" spellcheck="false" style="flex: 1; background: transparent; border: none; color: #fff; font-family: inherit; font-size: 12px; outline: none;">
+          </div>
+        </div>
+      `;
+      setTimeout(() => {
+        const tInput = document.getElementById('termux-input');
+        const tOutput = document.getElementById('termux-output');
+        if (tInput) {
+          tInput.focus();
+          tInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+              const cmd = tInput.value.trim().toLowerCase();
+              tOutput.innerHTML += `<div><span style="color:#38bdf8;">$</span> ${cmd}</div>`;
+              if (cmd === 'help') {
+                tOutput.innerHTML += `<div>Commands: whoami, skills, projects, exp, contact, clear</div>`;
+              } else if (cmd === 'whoami') {
+                tOutput.innerHTML += `<div>Yatin Jain | Software Engineer | Full-Stack & Backend</div>`;
+              } else if (cmd === 'skills') {
+                tOutput.innerHTML += `<div>Python, Next.js, React, Django, PostgreSQL, MongoDB, Supabase</div>`;
+              } else if (cmd === 'projects') {
+                tOutput.innerHTML += `<div>Baba Ratna ERP, Library Management, Learning Tracker API</div>`;
+              } else if (cmd === 'exp') {
+                tOutput.innerHTML += `<div>Goldenhat Tech (June 2026), Navodita Infotech, SkillCraft</div>`;
+              } else if (cmd === 'contact') {
+                tOutput.innerHTML += `<div>Email: jainyatin693@gmail.com | Phone: +91 7357910535</div>`;
+              } else if (cmd === 'clear') {
+                tOutput.innerHTML = '';
+              } else {
+                tOutput.innerHTML += `<div>command not found: ${cmd}</div>`;
+              }
+              tInput.value = '';
+            }
+          });
+        }
+      }, 50);
+      break;
+
+    case 'keep':
+      title.textContent = 'Keep Notes - welcome.txt';
+      content.innerHTML = `
+        <div style="background: #fef08a; border-radius: 10px; padding: 14px; color: #713f12; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+          <h3 style="font-size: 14px; margin-bottom: 6px;">Welcome to my Portfolio!</h3>
+          <p style="font-size: 12px; line-height: 1.5; margin-bottom: 8px;">
+            Hi, I'm Yatin Jain. A Full-Stack & Backend Developer specializing in Python, Django, Next.js, and PostgreSQL.
+          </p>
+          <div style="font-size: 11px; color: #854d0e; border-top: 1px solid rgba(133, 77, 14, 0.2); padding-top: 6px;">
+            📍 Jaipur, Rajasthan • 📞 +91 7357910535 • ✉️ jainyatin693@gmail.com
+          </div>
+        </div>
+      `;
+      break;
+  }
+
+  viewer.classList.add('open');
+}
+
+function closeAndroidApp() {
+  const viewer = document.getElementById('android-app-viewer');
+  if (viewer) viewer.classList.remove('open');
+}
+
+async function sendAndroidMail() {
+  const fromEmail = document.getElementById('android-from-email').value.trim();
+  const subject = document.getElementById('android-subject').value.trim();
+  const body = document.getElementById('android-body-text').value.trim();
+  const feedback = document.getElementById('android-mail-feedback');
+  const sendBtn = document.getElementById('android-send-btn');
+
+  if (!fromEmail || !subject || !body) {
+    feedback.style.color = '#dc2626';
+    feedback.textContent = 'Please fill in all fields.';
+    return;
+  }
+
+  if (sendBtn) {
+    sendBtn.disabled = true;
+    sendBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+  }
+
+  feedback.style.color = '#2563eb';
+  feedback.textContent = 'Sending email to jainyatin693@gmail.com...';
+
+  try {
+    const response = await fetch("https://formsubmit.co/ajax/jainyatin693@gmail.com", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        _subject: `[Portfolio Mobile Inquiry] ${subject} (From: ${fromEmail})`,
+        from: fromEmail,
+        replyto: fromEmail,
+        email: fromEmail,
+        subject: subject,
+        message: body,
+        _template: "table",
+        _captcha: "false"
+      })
+    });
+
+    const data = await response.json();
+
+    if (response.ok || data.success === "true" || data.success === true) {
+      feedback.style.color = '#16a34a';
+      feedback.innerHTML = '<i class="fa-solid fa-circle-check"></i> Email sent successfully!';
+      document.getElementById('android-subject').value = '';
+      document.getElementById('android-body-text').value = '';
+    } else {
+      throw new Error(data.message || 'Error occurred');
+    }
+  } catch (err) {
+    console.warn('Android send fallback:', err);
+    feedback.style.color = '#16a34a';
+    feedback.innerHTML = '<i class="fa-solid fa-circle-check"></i> Dispatched to mail app!';
+    const mailtoUrl = `mailto:jainyatin693@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("From: " + fromEmail + "\n\n" + body)}`;
+    window.location.href = mailtoUrl;
+  } finally {
+    if (sendBtn) {
+      sendBtn.disabled = false;
+      sendBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Email';
+    }
+  }
 }
 
