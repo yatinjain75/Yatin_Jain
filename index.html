@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yatin Jain | Windows 10 Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <!-- FontAwesome for Windows 10 & Tech Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="theme-hero">
+
+  <!-- Selection Box for Desktop -->
+  <div id="selection-box" class="selection-box"></div>
+
+  <!-- Desktop Environment -->
+  <main id="desktop" class="desktop">
+    <!-- Desktop Icons Grid -->
+    <div class="desktop-icons" id="desktop-icons">
+      <div class="desktop-icon" data-app="about" tabindex="0">
+        <div class="icon-img-wrapper">
+          <svg viewBox="0 0 48 48" class="win-icon"><path fill="#0078d7" d="M4 10h40v24H4z"/><path fill="#e1e1e1" d="M16 34h16v4H16zm-4 4h24v2H12z"/><rect x="6" y="12" width="36" height="20" fill="#1c97ea"/><circle cx="24" cy="22" r="6" fill="#fff"/><path fill="#0078d7" d="M24 18a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/></svg>
+        </div>
+        <span class="icon-label">This PC (About)</span>
+      </div>
+
+      <div class="desktop-icon" data-app="experience" tabindex="0">
+        <div class="icon-img-wrapper">
+          <svg viewBox="0 0 48 48" class="win-icon"><path fill="#f39c12" d="M40 12H26l-4-4H8c-2.2 0-4 1.8-4 4v24c0 2.2 1.8 4 4 4h32c2.2 0 4-1.8 4-4V16c0-2.2-1.8-4-4-4z"/><path fill="#f1c40f" d="M44 18H20l-4-4H8c-2.2 0-4 1.8-4 4v18c0 2.2 1.8 4 4 4h36c2.2 0 4-1.8 4-4V20c0-1.1-.9-2-2-2z"/></svg>
+        </div>
+        <span class="icon-label">Experience</span>
+      </div>
+
+      <div class="desktop-icon" data-app="projects" tabindex="0">
+        <div class="icon-img-wrapper">
+          <svg viewBox="0 0 48 48" class="win-icon"><rect x="6" y="8" width="36" height="32" rx="3" fill="#2c3e50"/><circle cx="12" cy="14" r="2" fill="#e74c3c"/><circle cx="18" cy="14" r="2" fill="#f1c40f"/><circle cx="24" cy="14" r="2" fill="#2ecc71"/><path fill="#3498db" d="M14 26l6-6-6-6M24 28h10" stroke="#3498db" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <span class="icon-label">Projects</span>
+      </div>
+
+      <div class="desktop-icon" data-app="skills" tabindex="0">
+        <div class="icon-img-wrapper">
+          <svg viewBox="0 0 48 48" class="win-icon"><circle cx="24" cy="24" r="20" fill="#0078d7"/><path fill="#ffffff" d="M24 10a14 14 0 1 0 14 14A14 14 0 0 0 24 10zm0 24a10 10 0 1 1 10-10 10 10 0 0 1-10 10z"/><path fill="#ffffff" d="M22 17h4v7h-4zm0 9h4v4h-4z"/></svg>
+        </div>
+        <span class="icon-label">Skills & Tech</span>
+      </div>
+
+      <div class="desktop-icon" data-app="terminal" tabindex="0">
+        <div class="icon-img-wrapper">
+          <svg viewBox="0 0 48 48" class="win-icon"><rect width="48" height="48" rx="4" fill="#0c1021"/><path d="M12 16l8 8-8 8m10 0h14" stroke="#4af626" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </div>
+        <span class="icon-label">PowerShell</span>
+      </div>
+
+      <div class="desktop-icon" data-app="resume" tabindex="0">
+        <div class="icon-img-wrapper">
+          <svg viewBox="0 0 48 48" class="win-icon"><path fill="#e74c3c" d="M38 14H28V4H10C7.8 4 6 5.8 6 8v32c0 2.2 1.8 4 4 4h28c2.2 0 4-1.8 4-4V18l-4-4z"/><path fill="#c0392b" d="M28 4v10h10L28 4z"/><text x="14" y="32" fill="#ffffff" font-family="sans-serif" font-weight="bold" font-size="9">PDF</text></svg>
+        </div>
+        <span class="icon-label">Resume.pdf</span>
+      </div>
+
+      <div class="desktop-icon" data-app="contact" tabindex="0">
+        <div class="icon-img-wrapper">
+          <svg viewBox="0 0 48 48" class="win-icon"><rect x="4" y="10" width="40" height="28" rx="2" fill="#0078d7"/><path fill="#ffffff" d="M24 26L6 12h36L24 26zm0 4L6 16v20h36V16L24 30z"/></svg>
+        </div>
+        <span class="icon-label">Mail (Contact)</span>
+      </div>
+
+      <div class="desktop-icon" data-app="notepad" tabindex="0">
+        <div class="icon-img-wrapper">
+          <svg viewBox="0 0 48 48" class="win-icon"><rect x="8" y="6" width="32" height="36" rx="2" fill="#e0e0e0"/><path fill="#0078d7" d="M14 14h20v2H14zm0 6h20v2H14zm0 6h14v2H14z"/><path fill="#2980b9" d="M34 26l-8 8v-8z"/></svg>
+        </div>
+        <span class="icon-label">welcome.txt</span>
+      </div>
+
+      <div class="desktop-icon" data-app="settings" tabindex="0">
+        <div class="icon-img-wrapper">
+          <svg viewBox="0 0 48 48" class="win-icon"><circle cx="24" cy="24" r="20" fill="#505050"/><path fill="#fff" d="M24 16a8 8 0 1 0 8 8 8 8 0 0 0-8-8zm0 12a4 4 0 1 1 4-4 4 4 0 0 1-4 4z"/><path fill="#fff" d="M42 22h-3.2a14.2 14.2 0 0 0-1.7-4.1l2.3-2.3-2.8-2.8-2.3 2.3A14.2 14.2 0 0 0 30.2 13V10h-4v3.2a14.2 14.2 0 0 0-4.1 1.7L19.8 12.6l-2.8 2.8 2.3 2.3A14.2 14.2 0 0 0 17.6 22H14v4h3.6a14.2 14.2 0 0 0 1.7 4.1l-2.3 2.3 2.8 2.8 2.3-2.3A14.2 14.2 0 0 0 26.2 35v3h4v-3.2a14.2 14.2 0 0 0 4.1-1.7l2.3 2.3 2.8-2.8-2.3-2.3a14.2 14.2 0 0 0 1.7-4.1H42v-4z"/></svg>
+        </div>
+        <span class="icon-label">Settings</span>
+      </div>
+
+      <div class="desktop-icon" data-app="trash" tabindex="0">
+        <div class="icon-img-wrapper">
+          <svg viewBox="0 0 48 48" class="win-icon"><path fill="#bdc3c7" d="M12 14h24l-2 26H14L12 14z"/><path fill="#7f8c8d" d="M10 10h28v4H10zm8-4h12v4H18z"/></svg>
+        </div>
+        <span class="icon-label">Recycle Bin</span>
+      </div>
+    </div>
+
+    <!-- WINDOW CONTAINERS -->
+
+    <!-- 1. ABOUT ME WINDOW (THIS PC) -->
+    <div class="window" id="window-about" data-window="about" style="top: 80px; left: 100px; width: 820px; height: 560px;">
+      <div class="window-header">
+        <div class="window-title">
+          <span class="win-title-icon"><i class="fa-solid fa-desktop"></i></span>
+          <span>This PC - Yatin Jain (Software Engineer)</span>
+        </div>
+        <div class="window-controls">
+          <button class="win-btn win-min" title="Minimize">🗕</button>
+          <button class="win-btn win-max" title="Maximize">🗖</button>
+          <button class="win-btn win-close" title="Close">✕</button>
+        </div>
+      </div>
+      <div class="window-menu-bar">
+        <span>File</span>
+        <span>Computer</span>
+        <span>View</span>
+        <span>Manage</span>
+      </div>
+      <div class="window-body explorer-body">
+        <div class="explorer-sidebar">
+          <div class="sidebar-item active"><i class="fa-solid fa-gauge-high"></i> System Overview</div>
+          <div class="sidebar-item" onclick="openWindow('experience')"><i class="fa-solid fa-briefcase"></i> Work Experience</div>
+          <div class="sidebar-item" onclick="openWindow('projects')"><i class="fa-solid fa-laptop-code"></i> Featured Projects</div>
+          <div class="sidebar-item" onclick="openWindow('skills')"><i class="fa-solid fa-microchip"></i> Skills & Specs</div>
+          <div class="sidebar-item" onclick="openWindow('resume')"><i class="fa-regular fa-file-pdf"></i> Resume.pdf</div>
+          <div class="sidebar-item" onclick="openWindow('contact')"><i class="fa-solid fa-envelope"></i> Contact Me</div>
+        </div>
+        <div class="explorer-content">
+          <div class="system-specs-card">
+            <div class="hero-avatar">
+              <div class="avatar-circle">YJ</div>
+              <div class="avatar-status" title="Available for Work"></div>
+            </div>
+            <div class="hero-text">
+              <h2>YATIN JAIN</h2>
+              <p class="subtitle">Software Engineer | Full-Stack & Backend Developer</p>
+              <div class="quick-meta">
+                <span><i class="fa-solid fa-location-dot"></i> Jaipur, Rajasthan, India</span>
+                <span><i class="fa-solid fa-envelope"></i> jainyatin693@gmail.com</span>
+                <span><i class="fa-solid fa-phone"></i> +91 7357910535</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-card">
+            <h3><i class="fa-solid fa-quote-left"></i> Professional Summary</h3>
+            <p class="summary-text">
+              "Seeking an entry-level opportunity in software engineering to apply my academic foundation in computer science, strengthen my expertise in full-stack development, and contribute to innovative projects. Eager to learn modern technologies and grow as a software developer while delivering quality solutions."
+            </p>
+          </div>
+
+          <div class="section-card">
+            <h3><i class="fa-solid fa-graduation-cap"></i> Education</h3>
+            <div class="edu-item">
+              <div class="edu-header">
+                <strong>Jaipur Engineering College and Research Centre (JECRC)</strong>
+                <span class="edu-badge">Expected 2026</span>
+              </div>
+              <p class="edu-sub">Bachelor of Technology (B.Tech.) in Computer Science and Engineering</p>
+              <p class="edu-details"><strong>CGPA: 6.82</strong> | Jaipur, Rajasthan, India</p>
+            </div>
+          </div>
+
+          <div class="section-card">
+            <h3><i class="fa-solid fa-certificate"></i> Certifications</h3>
+            <ul class="cert-list">
+              <li>
+                <i class="fa-solid fa-award"></i>
+                <div>
+                  <strong>MongoDB Python Developer Path</strong>
+                  <span>Issued by MongoDB Inc.</span>
+                </div>
+              </li>
+              <li>
+                <i class="fa-solid fa-award"></i>
+                <div>
+                  <strong>Python Crash Course</strong>
+                  <span>Campus Code</span>
+                </div>
+              </li>
+              <li>
+                <i class="fa-solid fa-award"></i>
+                <div>
+                  <strong>Music Recommendation Systems Masterclass</strong>
+                  <span>Physics Wallah</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="action-buttons-row">
+            <button class="win-action-btn primary" onclick="openWindow('projects')"><i class="fa-solid fa-folder-open"></i> Browse Projects</button>
+            <button class="win-action-btn" onclick="openWindow('resume')"><i class="fa-solid fa-file-arrow-down"></i> View Full Resume</button>
+            <button class="win-action-btn" onclick="openWindow('contact')"><i class="fa-solid fa-paper-plane"></i> Get in Touch</button>
+          </div>
+        </div>
+      </div>
+      <div class="window-statusbar">
+        <span>1 item selected | Status: Available for full-time & intern opportunities</span>
+        <span>Computer: YATIN-DESKTOP</span>
+      </div>
+    </div>
+
+    <!-- 2. WORK EXPERIENCE WINDOW -->
+    <div class="window" id="window-experience" data-window="experience" style="top: 110px; left: 150px; width: 840px; height: 570px;">
+      <div class="window-header">
+        <div class="window-title">
+          <span class="win-title-icon"><i class="fa-solid fa-briefcase"></i></span>
+          <span>Work Experience - File Explorer</span>
+        </div>
+        <div class="window-controls">
+          <button class="win-btn win-min">🗕</button>
+          <button class="win-btn win-max">🗖</button>
+          <button class="win-btn win-close">✕</button>
+        </div>
+      </div>
+      <div class="window-addressbar">
+        <button class="nav-btn"><i class="fa-solid fa-arrow-left"></i></button>
+        <button class="nav-btn"><i class="fa-solid fa-arrow-right"></i></button>
+        <button class="nav-btn"><i class="fa-solid fa-arrow-up"></i></button>
+        <div class="path-box">
+          <i class="fa-solid fa-folder-open"></i>
+          <span>This PC &gt; Yatin &gt; Work Experience</span>
+        </div>
+        <div class="search-box-mini">
+          <input type="text" placeholder="Search Experience...">
+        </div>
+      </div>
+      <div class="window-body scrollable-body">
+        <div class="timeline-container">
+          
+          <!-- Experience 1 -->
+          <div class="timeline-card">
+            <div class="timeline-badge current"><i class="fa-solid fa-laptop-code"></i></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <div>
+                  <h3 class="role-title">Software Engineer Intern</h3>
+                  <h4 class="company-name">Goldenhat Technologies <span class="tag-remote">Remote</span></h4>
+                </div>
+                <div class="timeline-date">
+                  <span class="date-pill active-pill"><i class="fa-regular fa-clock"></i> June 2026 – Present</span>
+                </div>
+              </div>
+              <ul class="experience-points">
+                <li>Developing and maintaining responsive web applications and scalable backend services using <strong>Next.js</strong>, <strong>React</strong>, and <strong>Python</strong>.</li>
+                <li>Architecting secure <strong>RESTful API endpoints</strong>, optimizing <strong>PostgreSQL</strong> queries, and significantly reducing server response latency.</li>
+                <li>Implementing robust client and server-side state synchronization, elevating user workflow efficiency.</li>
+                <li>Collaborating in agile team sprints, engaging in peer code reviews, and writing maintainable, modular code.</li>
+              </ul>
+              <div class="tech-tags">
+                <span>Next.js</span>
+                <span>React</span>
+                <span>Python</span>
+                <span>PostgreSQL</span>
+                <span>REST APIs</span>
+                <span>Agile</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experience 2 -->
+          <div class="timeline-card">
+            <div class="timeline-badge"><i class="fa-brands fa-python"></i></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <div>
+                  <h3 class="role-title">Python Developer Intern</h3>
+                  <h4 class="company-name">Navodita Infotech <span class="tag-remote">Remote</span></h4>
+                </div>
+                <div class="timeline-date">
+                  <span class="date-pill"><i class="fa-regular fa-calendar"></i> July 2025 – August 2025</span>
+                </div>
+              </div>
+              <ul class="experience-points">
+                <li>Engineered automated Python data processing scripts, increasing dataset processing throughput by <strong>25%</strong>.</li>
+                <li>Implemented backend application workflows, integrated third-party RESTful APIs, and conducted rigorous unit testing.</li>
+              </ul>
+              <div class="tech-tags">
+                <span>Python</span>
+                <span>Data Processing</span>
+                <span>RESTful APIs</span>
+                <span>Unit Testing</span>
+                <span>Automation</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experience 3 -->
+          <div class="timeline-card">
+            <div class="timeline-badge"><i class="fa-solid fa-chart-line"></i></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <div>
+                  <h3 class="role-title">Data Science Intern</h3>
+                  <h4 class="company-name">SkillCraft Technology <span class="tag-remote">Remote</span></h4>
+                </div>
+                <div class="timeline-date">
+                  <span class="date-pill"><i class="fa-regular fa-calendar"></i> February 2025</span>
+                </div>
+              </div>
+              <ul class="experience-points">
+                <li>Analyzed multi-dimensional datasets with <strong>Python</strong>, <strong>Pandas</strong>, and <strong>Scikit-learn</strong> to identify high-impact statistical patterns and actionable trends.</li>
+              </ul>
+              <div class="tech-tags">
+                <span>Python</span>
+                <span>Pandas</span>
+                <span>Scikit-learn</span>
+                <span>Data Analysis</span>
+                <span>Statistical Modeling</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="window-statusbar">
+        <span>3 experience items | Total experience: Software Engineering & Data Systems</span>
+      </div>
+    </div>
+
+    <!-- 3. PROJECTS WINDOW -->
+    <div class="window" id="window-projects" data-window="projects" style="top: 100px; left: 200px; width: 860px; height: 580px;">
+      <div class="window-header">
+        <div class="window-title">
+          <span class="win-title-icon"><i class="fa-solid fa-folder-open"></i></span>
+          <span>Featured Projects - Portfolio Explorer</span>
+        </div>
+        <div class="window-controls">
+          <button class="win-btn win-min">🗕</button>
+          <button class="win-btn win-max">🗖</button>
+          <button class="win-btn win-close">✕</button>
+        </div>
+      </div>
+      <div class="window-addressbar">
+        <button class="nav-btn"><i class="fa-solid fa-arrow-left"></i></button>
+        <button class="nav-btn"><i class="fa-solid fa-arrow-right"></i></button>
+        <div class="path-box">
+          <i class="fa-solid fa-folder"></i>
+          <span>This PC &gt; Yatin &gt; Featured Projects</span>
+        </div>
+      </div>
+      <div class="window-body scrollable-body">
+        <div class="projects-grid">
+          
+          <!-- Project 1 -->
+          <div class="project-card">
+            <div class="project-header">
+              <div class="project-icon-box plant">
+                <i class="fa-solid fa-seedling"></i>
+              </div>
+              <div class="project-title-area">
+                <h3>Baba Ratna Plant Zone</h3>
+                <span class="project-category">Agricultural ERP & Client Portal</span>
+              </div>
+              <span class="status-badge live"><i class="fa-solid fa-circle"></i> Production Deployed</span>
+            </div>
+            <div class="project-date"><i class="fa-regular fa-calendar-check"></i> June 2026</div>
+            <p class="project-description">
+              An enterprise Agricultural ERP system featuring Role-Based Access Control (RBAC) across Admin, Expert, and Staff roles. Built with Next.js Server Actions and Supabase Admin API with secure PIN credentials.
+            </p>
+            <div class="project-highlights">
+              <div class="highlight-item"><i class="fa-solid fa-shield-halved"></i> Role-Based Access Control (RBAC) across Admin, Expert, & Staff roles</div>
+              <div class="highlight-item"><i class="fa-solid fa-key"></i> Automated user provisioning via Next.js Server Actions & Supabase Admin API</div>
+              <div class="highlight-item"><i class="fa-solid fa-lock"></i> Server-validated API routes mitigating authorization vulnerabilities</div>
+              <div class="highlight-item"><i class="fa-solid fa-mobile-screen"></i> Mobile-first dashboard with Tailwind CSS & Framer Motion fluid animations</div>
+            </div>
+            <div class="tech-tags">
+              <span>Next.js</span>
+              <span>React</span>
+              <span>Supabase</span>
+              <span>PostgreSQL</span>
+              <span>Tailwind CSS</span>
+              <span>Framer Motion</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://github.com/yatinjain75" target="_blank" class="proj-btn"><i class="fa-brands fa-github"></i> Repository</a>
+              <button class="proj-btn primary" onclick="openWindow('contact')"><i class="fa-solid fa-info-circle"></i> Request Demo</button>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-card">
+            <div class="project-header">
+              <div class="project-icon-box library">
+                <i class="fa-solid fa-book-bookmark"></i>
+              </div>
+              <div class="project-title-area">
+                <h3>Library & Seat Management</h3>
+                <span class="project-category">Automation & Reservation Platform</span>
+              </div>
+              <span class="status-badge live"><i class="fa-solid fa-circle"></i> Cloud Deployed</span>
+            </div>
+            <div class="project-date"><i class="fa-regular fa-calendar-check"></i> February 2026</div>
+            <p class="project-description">
+              Full-stack library platform automating inventory tracking, book issuance, and real-time floor seat reservations with live occupancy analytics.
+            </p>
+            <div class="project-highlights">
+              <div class="highlight-item"><i class="fa-solid fa-chair"></i> Real-time floor seat reservations & inventory tracking</div>
+              <div class="highlight-item"><i class="fa-solid fa-chart-pie"></i> Interactive Admin console with live seat occupancy analytics</div>
+              <div class="highlight-item"><i class="fa-solid fa-receipt"></i> Automated fine calculation & support ticket triage</div>
+              <div class="highlight-item"><i class="fa-solid fa-shield-virus"></i> Werkzeug cryptographic password hashing on Streamlit Cloud</div>
+            </div>
+            <div class="tech-tags">
+              <span>Python</span>
+              <span>Streamlit</span>
+              <span>MongoDB</span>
+              <span>Werkzeug</span>
+              <span>Streamlit Cloud</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://github.com/yatinjain75" target="_blank" class="proj-btn"><i class="fa-brands fa-github"></i> Repository</a>
+              <button class="proj-btn primary" onclick="openWindow('contact')"><i class="fa-solid fa-info-circle"></i> Inquire</button>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="project-card">
+            <div class="project-header">
+              <div class="project-icon-box backend">
+                <i class="fa-solid fa-server"></i>
+              </div>
+              <div class="project-title-area">
+                <h3>Learning Tracker Microservice</h3>
+                <span class="project-category">Backend API Service</span>
+              </div>
+              <span class="status-badge api"><i class="fa-solid fa-network-wired"></i> API Service</span>
+            </div>
+            <div class="project-date"><i class="fa-regular fa-calendar-check"></i> July 2025</div>
+            <p class="project-description">
+              High-performance RESTful backend API service engineered for goal management, daily progress tracking, and milestone evaluations.
+            </p>
+            <div class="project-highlights">
+              <div class="highlight-item"><i class="fa-solid fa-bullseye"></i> Goal management, progress tracking & milestone evaluations</div>
+              <div class="highlight-item"><i class="fa-solid fa-fingerprint"></i> JSON Web Token (JWT) user authorization & session security</div>
+              <div class="highlight-item"><i class="fa-solid fa-vial-circle-check"></i> Comprehensive Postman API collections with automated test suites</div>
+              <div class="highlight-item"><i class="fa-solid fa-database"></i> Normalized relational schema and query optimization</div>
+            </div>
+            <div class="tech-tags">
+              <span>Django REST Framework</span>
+              <span>Python</span>
+              <span>JWT</span>
+              <span>Postman</span>
+              <span>PostgreSQL</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://github.com/yatinjain75" target="_blank" class="proj-btn"><i class="fa-brands fa-github"></i> Repository</a>
+              <button class="proj-btn primary" onclick="openWindow('terminal')"><i class="fa-solid fa-terminal"></i> Test in CLI</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="window-statusbar">
+        <span>3 items | All projects developed by Yatin Jain</span>
+      </div>
+    </div>
+
+    <!-- 4. SKILLS WINDOW (SETTINGS / SYSTEM SPECS) -->
+    <div class="window" id="window-skills" data-window="skills" style="top: 120px; left: 240px; width: 800px; height: 560px;">
+      <div class="window-header">
+        <div class="window-title">
+          <span class="win-title-icon"><i class="fa-solid fa-sliders"></i></span>
+          <span>Technical Skills & Specifications</span>
+        </div>
+        <div class="window-controls">
+          <button class="win-btn win-min">🗕</button>
+          <button class="win-btn win-max">🗖</button>
+          <button class="win-btn win-close">✕</button>
+        </div>
+      </div>
+      <div class="window-body scrollable-body">
+        <div class="skills-wrapper">
+          
+          <!-- Category 1: Languages -->
+          <div class="skill-category-card">
+            <div class="category-header">
+              <div class="cat-icon"><i class="fa-solid fa-code"></i></div>
+              <div>
+                <h3>Programming Languages</h3>
+                <p>Core programming foundations & syntax</p>
+              </div>
+            </div>
+            <div class="skills-list">
+              <div class="skill-chip"><i class="fa-brands fa-python"></i> Python</div>
+              <div class="skill-chip"><i class="fa-brands fa-js"></i> JavaScript</div>
+              <div class="skill-chip"><i class="fa-solid fa-c"></i> C / C++</div>
+              <div class="skill-chip"><i class="fa-solid fa-database"></i> SQL (PostgreSQL, MySQL)</div>
+              <div class="skill-chip"><i class="fa-brands fa-html5"></i> HTML5</div>
+              <div class="skill-chip"><i class="fa-brands fa-css3-alt"></i> CSS3</div>
+            </div>
+          </div>
+
+          <!-- Category 2: Frameworks & Libraries -->
+          <div class="skill-category-card">
+            <div class="category-header">
+              <div class="cat-icon"><i class="fa-solid fa-cubes"></i></div>
+              <div>
+                <h3>Frameworks & Libraries</h3>
+                <p>Modern frontend & robust backend stacks</p>
+              </div>
+            </div>
+            <div class="skills-list">
+              <div class="skill-chip"><i class="fa-brands fa-react"></i> Next.js</div>
+              <div class="skill-chip"><i class="fa-brands fa-react"></i> React</div>
+              <div class="skill-chip"><i class="fa-solid fa-leaf"></i> Django / DRF</div>
+              <div class="skill-chip"><i class="fa-solid fa-wind"></i> Tailwind CSS</div>
+              <div class="skill-chip"><i class="fa-solid fa-wand-magic-sparkles"></i> Framer Motion</div>
+              <div class="skill-chip"><i class="fa-solid fa-chart-simple"></i> Streamlit</div>
+              <div class="skill-chip"><i class="fa-solid fa-table"></i> Pandas</div>
+            </div>
+          </div>
+
+          <!-- Category 3: Databases & Cloud Tools -->
+          <div class="skill-category-card">
+            <div class="category-header">
+              <div class="cat-icon"><i class="fa-solid fa-cloud"></i></div>
+              <div>
+                <h3>Databases & Cloud Tools</h3>
+                <p>Data persistence, hosting & DevOps tooling</p>
+              </div>
+            </div>
+            <div class="skills-list">
+              <div class="skill-chip"><i class="fa-solid fa-database"></i> PostgreSQL</div>
+              <div class="skill-chip"><i class="fa-solid fa-leaf"></i> MongoDB</div>
+              <div class="skill-chip"><i class="fa-solid fa-database"></i> MySQL</div>
+              <div class="skill-chip"><i class="fa-solid fa-bolt"></i> Supabase</div>
+              <div class="skill-chip"><i class="fa-brands fa-git-alt"></i> Git & GitHub</div>
+              <div class="skill-chip"><i class="fa-solid fa-paper-plane"></i> Postman</div>
+              <div class="skill-chip"><i class="fa-solid fa-triangle-exclamation"></i> Vercel</div>
+              <div class="skill-chip"><i class="fa-solid fa-train"></i> Railway</div>
+            </div>
+          </div>
+
+          <!-- Category 4: Core CS & Architecture -->
+          <div class="skill-category-card">
+            <div class="category-header">
+              <div class="cat-icon"><i class="fa-solid fa-brain"></i></div>
+              <div>
+                <h3>Core CS & Architecture</h3>
+                <p>System design, protocols & computer science foundations</p>
+              </div>
+            </div>
+            <div class="skills-list">
+              <div class="skill-chip"><i class="fa-solid fa-network-wired"></i> RESTful APIs</div>
+              <div class="skill-chip"><i class="fa-solid fa-key"></i> JWT Authentication</div>
+              <div class="skill-chip"><i class="fa-solid fa-user-shield"></i> RBAC (Role-Based Access)</div>
+              <div class="skill-chip"><i class="fa-solid fa-diagram-project"></i> Data Structures & Algorithms</div>
+              <div class="skill-chip"><i class="fa-solid fa-database"></i> DBMS</div>
+              <div class="skill-chip"><i class="fa-solid fa-cube"></i> Object-Oriented Programming (OOP)</div>
+              <div class="skill-chip"><i class="fa-solid fa-microchip"></i> Operating Systems</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="window-statusbar">
+        <span>Installed Capabilities: 28 skills verified</span>
+      </div>
+    </div>
+
+    <!-- 5. TERMINAL / POWERSHELL WINDOW -->
+    <div class="window" id="window-terminal" data-window="terminal" style="top: 140px; left: 220px; width: 750px; height: 500px;">
+      <div class="window-header terminal-header">
+        <div class="window-title">
+          <span class="win-title-icon"><i class="fa-solid fa-terminal"></i></span>
+          <span>Windows PowerShell - [Yatin Jain CLI v10.0]</span>
+        </div>
+        <div class="window-controls">
+          <button class="win-btn win-min">🗕</button>
+          <button class="win-btn win-max">🗖</button>
+          <button class="win-btn win-close">✕</button>
+        </div>
+      </div>
+      <div class="window-body terminal-body" id="terminal-body" onclick="document.getElementById('terminal-input').focus()">
+        <div class="terminal-output" id="terminal-output">
+          <div class="term-banner">
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Welcome to Yatin Jain's Interactive Terminal.
+Type <span class="term-highlight">'help'</span> to see available commands or <span class="term-highlight">'sudo hire'</span> to get in touch.
+          </div>
+        </div>
+        <div class="terminal-prompt-line">
+          <span class="prompt-text">PS C:\Users\Yatin&gt;</span>
+          <input type="text" id="terminal-input" autocomplete="off" spellcheck="false" autofocus>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. RESUME VIEWER WINDOW -->
+    <div class="window" id="window-resume" data-window="resume" style="top: 70px; left: 180px; width: 780px; height: 620px;">
+      <div class="window-header">
+        <div class="window-title">
+          <span class="win-title-icon"><i class="fa-solid fa-file-pdf"></i></span>
+          <span>Yatin_Jain_Resume.pdf - Microsoft Edge / PDF Viewer</span>
+        </div>
+        <div class="window-controls">
+          <button class="win-btn win-min">🗕</button>
+          <button class="win-btn win-max">🗖</button>
+          <button class="win-btn win-close">✕</button>
+        </div>
+      </div>
+      <div class="window-addressbar resume-toolbar">
+        <div class="doc-tools">
+          <button class="doc-btn" onclick="window.print()" title="Print Resume"><i class="fa-solid fa-print"></i> Print</button>
+          <a href="Yatin_Jain_Resume.pdf" download="Yatin_Jain_Resume.pdf" class="doc-btn" title="Download Resume"><i class="fa-solid fa-download"></i> Download PDF</a>
+          <button class="doc-btn" onclick="openWindow('contact')"><i class="fa-solid fa-paper-plane"></i> Contact Candidate</button>
+        </div>
+        <div class="page-indicator">Page 1 of 1 (100%)</div>
+      </div>
+      <div class="window-body scrollable-body resume-paper-bg">
+        <div class="resume-sheet">
+          <div class="resume-sheet-header">
+            <h1>YATIN JAIN</h1>
+            <p class="resume-subtitle">Software Engineer | Full-Stack & Backend Developer</p>
+            <div class="resume-contact-line">
+              <span>Jaipur, Rajasthan, India</span> • 
+              <span>+91 7357910535</span> • 
+              <a href="mailto:jainyatin693@gmail.com">jainyatin693@gmail.com</a> • 
+              <a href="https://linkedin.com/in/yatinjain75" target="_blank">linkedin.com/in/yatinjain75</a> • 
+              <a href="https://github.com/yatinjain75" target="_blank">github.com/yatinjain75</a>
+            </div>
+          </div>
+
+          <div class="resume-section">
+            <h2 class="resume-sec-title">PROFESSIONAL SUMMARY</h2>
+            <p class="resume-sec-body">
+              "Seeking an entry-level opportunity in software engineering to apply my academic foundation in computer science, strengthen my expertise in full-stack development, and contribute to innovative projects. Eager to learn modern technologies and grow as a software developer while delivering quality solutions."
+            </p>
+          </div>
+
+          <div class="resume-section">
+            <h2 class="resume-sec-title">TECHNICAL SKILLS</h2>
+            <p><strong>Languages:</strong> Python, C, C++, JavaScript, SQL (PostgreSQL, MySQL), HTML5, CSS3</p>
+            <p><strong>Frameworks & Libraries:</strong> Django, Django REST Framework (DRF), Next.js, React, Tailwind CSS, Framer Motion, Streamlit, Pandas</p>
+            <p><strong>Databases & Cloud Tools:</strong> PostgreSQL, MongoDB, MySQL, Supabase, Git, GitHub, Postman, Vercel, Railway</p>
+            <p><strong>Core CS & Architecture:</strong> RESTful APIs, JWT Authentication, RBAC, Data Structures & Algorithms, DBMS, OOP, Operating Systems</p>
+          </div>
+
+          <div class="resume-section">
+            <h2 class="resume-sec-title">WORK EXPERIENCE</h2>
+            
+            <div class="resume-job">
+              <div class="job-line1">
+                <strong>Goldenhat Technologies</strong>
+                <span>June 2026 – Present</span>
+              </div>
+              <div class="job-line2">
+                <em>Software Engineer Intern</em>
+                <span>Remote</span>
+              </div>
+              <ul>
+                <li>Developing and maintaining responsive web applications and scalable backend services using Next.js, React, and Python.</li>
+                <li>Architecting secure RESTful API endpoints, optimizing PostgreSQL queries, and reducing server response latency.</li>
+                <li>Implementing robust client and server-side state synchronization, elevating user workflow efficiency.</li>
+                <li>Collaborating in agile team sprints, engaging in peer code reviews, and writing maintainable, modular code.</li>
+              </ul>
+            </div>
+
+            <div class="resume-job">
+              <div class="job-line1">
+                <strong>Navodita Infotech</strong>
+                <span>July 2025 – August 2025</span>
+              </div>
+              <div class="job-line2">
+                <em>Python Developer Intern</em>
+                <span>Remote</span>
+              </div>
+              <ul>
+                <li>Engineered automated Python data processing scripts, increasing dataset processing throughput by 25%.</li>
+                <li>Implemented backend application workflows, integrated third-party RESTful APIs, and conducted unit testing.</li>
+              </ul>
+            </div>
+
+            <div class="resume-job">
+              <div class="job-line1">
+                <strong>SkillCraft Technology</strong>
+                <span>February 2025</span>
+              </div>
+              <div class="job-line2">
+                <em>Data Science Intern</em>
+                <span>Remote</span>
+              </div>
+              <ul>
+                <li>Analyzed multi-dimensional datasets with Python, Pandas, and Scikit-learn to identify high-impact statistical patterns.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="resume-section">
+            <h2 class="resume-sec-title">FEATURED PROJECTS</h2>
+            
+            <div class="resume-proj">
+              <div class="job-line1">
+                <strong>Baba Ratna Plant Zone – Agricultural ERP & Client Portal</strong>
+                <span>June 2026</span>
+              </div>
+              <div class="job-line2">
+                <em>Next.js, React, Supabase, PostgreSQL, Tailwind CSS</em>
+                <span class="badge-accent">Production Deployed</span>
+              </div>
+              <ul>
+                <li>Architected an enterprise Agricultural ERP system with Role-Based Access Control (RBAC) across Admin, Expert, and Staff roles.</li>
+                <li>Built an automated user provisioning module using Next.js Server Actions and Supabase Admin API with secure PIN credentials.</li>
+                <li>Developed server-validated API routes protecting sensitive administrative workflows and mitigating authorization vulnerabilities.</li>
+                <li>Designed a mobile-first dashboard with Tailwind CSS and Framer Motion with fluid animations and responsive modals.</li>
+              </ul>
+            </div>
+
+            <div class="resume-proj">
+              <div class="job-line1">
+                <strong>Library & Seat Management System</strong>
+                <span>February 2026</span>
+              </div>
+              <div class="job-line2">
+                <em>Python, Streamlit, MongoDB, Werkzeug</em>
+                <span class="badge-accent">Cloud Deployed</span>
+              </div>
+              <ul>
+                <li>Constructed a full-stack library platform automating inventory tracking, book issuance, and real-time floor seat reservations.</li>
+                <li>Programmed an interactive Admin console with live seat occupancy analytics, fine calculation, and support ticket triage.</li>
+                <li>Secured sensitive user credentials via Werkzeug cryptographic password hashing and deployed on Streamlit Cloud.</li>
+              </ul>
+            </div>
+
+            <div class="resume-proj">
+              <div class="job-line1">
+                <strong>Learning Tracker (Backend Microservice)</strong>
+                <span>July 2025</span>
+              </div>
+              <div class="job-line2">
+                <em>Django REST Framework (DRF), JWT, Postman</em>
+                <span class="badge-accent">API Service</span>
+              </div>
+              <ul>
+                <li>Architected a RESTful backend API service for goal management, daily progress tracking, and milestone evaluations.</li>
+                <li>Implemented JSON Web Token (JWT) user authorization and authored comprehensive Postman API collections with automated tests.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="resume-section">
+            <h2 class="resume-sec-title">EDUCATION</h2>
+            <div class="job-line1">
+              <strong>Jaipur Engineering College and Research Centre (JECRC)</strong>
+              <span>Expected 2026</span>
+            </div>
+            <div class="job-line2">
+              <em>Bachelor of Technology (B.Tech.) in Computer Science and Engineering | CGPA: 6.82</em>
+              <span>Jaipur, India</span>
+            </div>
+          </div>
+
+          <div class="resume-section">
+            <h2 class="resume-sec-title">CERTIFICATIONS</h2>
+            <p>MongoDB Python Developer Path (MongoDB Inc.) | Python Crash Course (Campus Code) | Music Recommendation Systems Masterclass (Physics Wallah)</p>
+          </div>
+
+        </div>
+      </div>
+      <div class="window-statusbar">
+        <span>Ready | 100% Zoom | Microsoft Edge PDF Rendering</span>
+      </div>
+    </div>
+
+    <!-- 7. CONTACT / MAIL WINDOW -->
+    <div class="window" id="window-contact" data-window="contact" style="top: 90px; left: 260px; width: 780px; height: 560px;">
+      <div class="window-header">
+        <div class="window-title">
+          <span class="win-title-icon"><i class="fa-solid fa-envelope"></i></span>
+          <span>Mail - Compose Message to Yatin Jain</span>
+        </div>
+        <div class="window-controls">
+          <button class="win-btn win-min">🗕</button>
+          <button class="win-btn win-max">🗖</button>
+          <button class="win-btn win-close">✕</button>
+        </div>
+      </div>
+      <div class="window-body mail-body">
+        <div class="mail-sidebar">
+          <div class="mail-side-btn active"><i class="fa-solid fa-pen-to-square"></i> New Mail</div>
+          <div class="mail-side-btn"><i class="fa-solid fa-inbox"></i> Inbox (1)</div>
+          <div class="mail-side-btn"><i class="fa-solid fa-paper-plane"></i> Sent Items</div>
+          <div class="mail-side-btn"><i class="fa-solid fa-address-book"></i> Contacts</div>
+          
+          <div class="contact-channels">
+            <h4>DIRECT CHANNELS</h4>
+            <a href="mailto:jainyatin693@gmail.com" class="channel-link"><i class="fa-solid fa-envelope"></i> Email</a>
+            <a href="https://linkedin.com/in/yatinjain75" target="_blank" class="channel-link"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+            <a href="https://github.com/yatinjain75" target="_blank" class="channel-link"><i class="fa-brands fa-github"></i> GitHub</a>
+            <a href="tel:+917357910535" class="channel-link"><i class="fa-solid fa-phone"></i> +91 7357910535</a>
+          </div>
+        </div>
+        <div class="mail-composer">
+          <form id="contact-form" onsubmit="event.preventDefault(); sendMailAction();">
+            <div class="mail-field">
+              <label>To:</label>
+              <input type="text" value="Yatin Jain &lt;jainyatin693@gmail.com&gt;" readonly class="readonly-input">
+            </div>
+            <div class="mail-field">
+              <label>From:</label>
+              <input type="email" id="sender-email" placeholder="your.email@company.com" required>
+            </div>
+            <div class="mail-field">
+              <label>Subject:</label>
+              <input type="text" id="mail-subject" placeholder="Opportunity / Project Collaboration / Inquiry" required>
+            </div>
+            <div class="mail-content-area">
+              <textarea id="mail-body-text" placeholder="Hi Yatin, I reviewed your portfolio and would like to discuss..." rows="8" required></textarea>
+            </div>
+            <div class="mail-actions-bar">
+              <button type="submit" id="mail-send-btn" class="win-action-btn primary"><i class="fa-solid fa-paper-plane"></i> Send Email</button>
+              <button type="button" class="win-action-btn" onclick="openInGmailWeb()"><i class="fa-brands fa-google"></i> Open in Gmail</button>
+              <button type="button" class="win-action-btn" onclick="copyContact()"><i class="fa-solid fa-copy"></i> Copy Email</button>
+              <span id="mail-feedback" class="mail-feedback"></span>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="window-statusbar">
+        <span>Ready | Connected to jainyatin693@gmail.com</span>
+      </div>
+    </div>
+
+    <!-- 8. NOTEPAD WINDOW (welcome.txt) -->
+    <div class="window" id="window-notepad" data-window="notepad" style="top: 130px; left: 280px; width: 680px; height: 460px;">
+      <div class="window-header">
+        <div class="window-title">
+          <span class="win-title-icon"><i class="fa-regular fa-note-sticky"></i></span>
+          <span>welcome.txt - Notepad</span>
+        </div>
+        <div class="window-controls">
+          <button class="win-btn win-min">🗕</button>
+          <button class="win-btn win-max">🗖</button>
+          <button class="win-btn win-close">✕</button>
+        </div>
+      </div>
+      <div class="window-menu-bar">
+        <span>File</span>
+        <span>Edit</span>
+        <span>Format</span>
+        <span>View</span>
+        <span>Help</span>
+      </div>
+      <div class="window-body notepad-body">
+        <textarea class="notepad-textarea" spellcheck="false">
+=====================================================
+Hello World! Welcome to my Windows 10 Portfolio!
+=====================================================
+
+I'm Yatin Jain, a Software Engineer, Full-Stack & Backend Developer
+based in Jaipur, Rajasthan, India.
+
+I love building scalable web services, reliable APIs, and seamless
+interactive user interfaces.
+
+💡 QUICK HIGHLIGHTS:
+- Current: Software Engineer Intern @ Goldenhat Technologies
+- Previous: Python Developer Intern @ Navodita Infotech
+- Education: B.Tech in CSE @ JECRC (Expected 2026)
+- Core Tech: Python, Django, Next.js, React, PostgreSQL, MongoDB
+
+Feel free to explore my projects, inspect the terminal, or shoot
+me an email at jainyatin693@gmail.com.
+
+Looking forward to connecting!
+
+- Yatin Jain
+-----------------------------------------------------
+        </textarea>
+      </div>
+      <div class="window-statusbar notepad-statusbar">
+        <span>Ln 24, Col 1</span>
+        <span>100%</span>
+        <span>Windows (CRLF)</span>
+        <span>UTF-8</span>
+      </div>
+    </div>
+
+    <!-- 9. SETTINGS WINDOW -->
+    <div class="window" id="window-settings" data-window="settings" style="top: 110px; left: 160px; width: 750px; height: 500px;">
+      <div class="window-header">
+        <div class="window-title">
+          <span class="win-title-icon"><i class="fa-solid fa-gear"></i></span>
+          <span>Windows Settings</span>
+        </div>
+        <div class="window-controls">
+          <button class="win-btn win-min">🗕</button>
+          <button class="win-btn win-max">🗖</button>
+          <button class="win-btn win-close">✕</button>
+        </div>
+      </div>
+      <div class="window-body scrollable-body settings-body">
+        <h2>Personalization</h2>
+        <p class="settings-sub">Customize the look and feel of Yatin's Windows 10 Portfolio.</p>
+        
+        <div class="settings-group">
+          <h3>Choose your background:</h3>
+          <div class="wallpaper-options">
+            <button class="wp-card active" onclick="setWallpaper('hero')">
+              <div class="wp-preview wp-hero"></div>
+              <span>Windows 10 Hero</span>
+            </button>
+            <button class="wp-card" onclick="setWallpaper('dark')">
+              <div class="wp-preview wp-dark"></div>
+              <span>Deep Blue Minimal</span>
+            </button>
+            <button class="wp-card" onclick="setWallpaper('cyber')">
+              <div class="wp-preview wp-cyber"></div>
+              <span>Matrix Cyber</span>
+            </button>
+            <button class="wp-card" onclick="setWallpaper('sunset')">
+              <div class="wp-preview wp-sunset"></div>
+              <span>Fluent Aurora</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <h3>System Information:</h3>
+          <div class="specs-grid">
+            <div class="spec-item">
+              <strong>Device name</strong>
+              <span>YATIN-PORTFOLIO-PC</span>
+            </div>
+            <div class="spec-item">
+              <strong>Developer</strong>
+              <span>Yatin Jain (Full-Stack & Backend)</span>
+            </div>
+            <div class="spec-item">
+              <strong>Edition</strong>
+              <span>Windows 10 Portfolio Edition (2026.1)</span>
+            </div>
+            <div class="spec-item">
+              <strong>Experience</strong>
+              <span>Next.js, Django, PostgreSQL, Python, React</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="window-statusbar">
+        <span>Settings | System up to date</span>
+      </div>
+    </div>
+
+    <!-- 10. RECYCLE BIN WINDOW -->
+    <div class="window" id="window-trash" data-window="trash" style="top: 150px; left: 250px; width: 680px; height: 440px;">
+      <div class="window-header">
+        <div class="window-title">
+          <span class="win-title-icon"><i class="fa-solid fa-trash-can"></i></span>
+          <span>Recycle Bin</span>
+        </div>
+        <div class="window-controls">
+          <button class="win-btn win-min">🗕</button>
+          <button class="win-btn win-max">🗖</button>
+          <button class="win-btn win-close">✕</button>
+        </div>
+      </div>
+      <div class="window-addressbar">
+        <div class="path-box">
+          <i class="fa-solid fa-trash-can"></i>
+          <span>Recycle Bin</span>
+        </div>
+      </div>
+      <div class="window-body trash-body">
+        <div class="trash-items">
+          <div class="trash-item">
+            <i class="fa-solid fa-file-code"></i>
+            <span>bugs_in_production.py</span>
+            <small>Deleted 0 bytes</small>
+          </div>
+          <div class="trash-item">
+            <i class="fa-solid fa-file-excel"></i>
+            <span>manual_spreadsheets.xlsx</span>
+            <small>Replaced with Baba Ratna ERP</small>
+          </div>
+          <div class="trash-item">
+            <i class="fa-solid fa-file-lines"></i>
+            <span>legacy_slow_queries.sql</span>
+            <small>Optimized by Yatin</small>
+          </div>
+          <div class="trash-item">
+            <i class="fa-solid fa-file-zipper"></i>
+            <span>imposter_syndrome.zip</span>
+            <small>Permanently Deleted</small>
+          </div>
+        </div>
+      </div>
+      <div class="window-statusbar">
+        <span>4 items in Recycle Bin | 0 MB total</span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- START MENU -->
+  <div id="start-menu" class="start-menu">
+    <!-- Left Narrow Icon Bar -->
+    <div class="start-sidebar">
+      <button class="start-side-btn" id="start-menu-expand" title="Expand"><i class="fa-solid fa-bars"></i></button>
+      <div class="start-side-bottom">
+        <button class="start-side-btn" onclick="openWindow('about')" title="User Profile">
+          <i class="fa-solid fa-user-circle"></i>
+          <span class="side-btn-text">Yatin Jain</span>
+        </button>
+        <button class="start-side-btn" onclick="openWindow('resume')" title="Documents">
+          <i class="fa-solid fa-file-alt"></i>
+          <span class="side-btn-text">Documents</span>
+        </button>
+        <button class="start-side-btn" onclick="openWindow('settings')" title="Settings">
+          <i class="fa-solid fa-gear"></i>
+          <span class="side-btn-text">Settings</span>
+        </button>
+        <button class="start-side-btn" onclick="openWindow('contact')" title="Power / Contact">
+          <i class="fa-solid fa-power-off"></i>
+          <span class="side-btn-text">Contact</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Middle Apps List -->
+    <div class="start-apps-list">
+      <div class="app-category">A</div>
+      <div class="start-app-item" onclick="openWindow('about')">
+        <div class="start-app-icon pc-icon"><i class="fa-solid fa-desktop"></i></div>
+        <span>About Yatin Jain</span>
+      </div>
+
+      <div class="app-category">C</div>
+      <div class="start-app-item" onclick="openWindow('contact')">
+        <div class="start-app-icon mail-icon"><i class="fa-solid fa-envelope"></i></div>
+        <span>Contact (Mail)</span>
+      </div>
+
+      <div class="app-category">E</div>
+      <div class="start-app-item" onclick="openWindow('experience')">
+        <div class="start-app-icon folder-icon"><i class="fa-solid fa-briefcase"></i></div>
+        <span>Experience Explorer</span>
+      </div>
+
+      <div class="app-category">N</div>
+      <div class="start-app-item" onclick="openWindow('notepad')">
+        <div class="start-app-icon note-icon"><i class="fa-regular fa-note-sticky"></i></div>
+        <span>Notepad (welcome.txt)</span>
+      </div>
+
+      <div class="app-category">P</div>
+      <div class="start-app-item" onclick="openWindow('terminal')">
+        <div class="start-app-icon term-icon"><i class="fa-solid fa-terminal"></i></div>
+        <span>PowerShell Terminal</span>
+      </div>
+      <div class="start-app-item" onclick="openWindow('projects')">
+        <div class="start-app-icon proj-icon"><i class="fa-solid fa-laptop-code"></i></div>
+        <span>Projects Hub</span>
+      </div>
+
+      <div class="app-category">R</div>
+      <div class="start-app-item" onclick="openWindow('resume')">
+        <div class="start-app-icon pdf-icon"><i class="fa-solid fa-file-pdf"></i></div>
+        <span>Resume (Yatin_Jain_Resume.pdf)</span>
+      </div>
+
+      <div class="app-category">S</div>
+      <div class="start-app-item" onclick="openWindow('skills')">
+        <div class="start-app-icon gear-icon"><i class="fa-solid fa-microchip"></i></div>
+        <span>Skills & Tech Matrix</span>
+      </div>
+    </div>
+
+    <!-- Right Live Tiles Grid -->
+    <div class="start-tiles">
+      <div class="tile-group-title">Featured Highlights</div>
+      <div class="tiles-grid">
+        <!-- Live Tile 1: Latest Project -->
+        <div class="live-tile tile-wide tile-project" onclick="openWindow('projects')">
+          <div class="tile-content">
+            <i class="fa-solid fa-seedling tile-bg-icon"></i>
+            <span class="tile-badge">Latest Deployment</span>
+            <h4>Baba Ratna Plant Zone</h4>
+            <p>Agricultural ERP with Next.js & Supabase RBAC</p>
+          </div>
+        </div>
+
+        <!-- Live Tile 2: Current Job -->
+        <div class="live-tile tile-medium tile-work" onclick="openWindow('experience')">
+          <div class="tile-content">
+            <i class="fa-solid fa-briefcase"></i>
+            <h4>Goldenhat Tech</h4>
+            <p>Software Engineer Intern</p>
+            <small>June 2026 – Present</small>
+          </div>
+        </div>
+
+        <!-- Live Tile 3: GitHub -->
+        <a href="https://github.com/yatinjain75" target="_blank" class="live-tile tile-medium tile-github">
+          <div class="tile-content">
+            <i class="fa-brands fa-github"></i>
+            <h4>GitHub</h4>
+            <p>@yatinjain75</p>
+            <small>Explore Repositories</small>
+          </div>
+        </a>
+
+        <!-- Live Tile 4: Tech Stack -->
+        <div class="live-tile tile-wide tile-stack" onclick="openWindow('skills')">
+          <div class="tile-content">
+            <span class="tile-badge">Core Stack</span>
+            <h4>Python • Next.js • React • PostgreSQL</h4>
+            <p>Django, Supabase, Tailwind, MongoDB</p>
+          </div>
+        </div>
+
+        <!-- Live Tile 5: Weather / Jaipur -->
+        <div class="live-tile tile-medium tile-weather">
+          <div class="tile-content">
+            <i class="fa-solid fa-sun"></i>
+            <h4>Jaipur, India</h4>
+            <p>32°C Sunny</p>
+            <small>Open to Relocate / Remote</small>
+          </div>
+        </div>
+
+        <!-- Live Tile 6: Quick Hire -->
+        <div class="live-tile tile-medium tile-hire" onclick="openWindow('contact')">
+          <div class="tile-content">
+            <i class="fa-solid fa-handshake"></i>
+            <h4>Hire Yatin</h4>
+            <p>Open for Opportunities</p>
+            <small>Send Message</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEARCH FLYOUT -->
+  <div id="search-flyout" class="search-flyout">
+    <div class="search-flyout-header">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span id="search-flyout-title">Top Results</span>
+    </div>
+    <div class="search-results-list" id="search-results-list">
+      <!-- Dynamic search items populated by JS -->
+    </div>
+  </div>
+
+  <!-- ACTION CENTER (NOTIFICATIONS) -->
+  <div id="action-center" class="action-center">
+    <div class="action-center-header">
+      <h3>Manage notifications</h3>
+      <button class="clear-all-btn" onclick="clearNotifications()">Clear all</button>
+    </div>
+    <div class="action-notifications" id="action-notifications">
+      <div class="notification-card">
+        <div class="notif-header">
+          <span class="notif-app"><i class="fa-solid fa-user-check"></i> Yatin Jain Portfolio</span>
+          <span class="notif-time">Just now</span>
+        </div>
+        <div class="notif-title">Candidate Available for Hire!</div>
+        <div class="notif-body">
+          Yatin is actively seeking Software Engineering & Full-Stack opportunities. Open to remote and on-site roles.
+        </div>
+        <div class="notif-actions">
+          <button class="notif-btn" onclick="openWindow('contact')">Contact Yatin</button>
+          <button class="notif-btn" onclick="openWindow('resume')">View Resume</button>
+        </div>
+      </div>
+
+      <div class="notification-card">
+        <div class="notif-header">
+          <span class="notif-app"><i class="fa-solid fa-rocket"></i> System Update</span>
+          <span class="notif-time">5m ago</span>
+        </div>
+        <div class="notif-title">Production Release</div>
+        <div class="notif-body">
+          Baba Ratna Plant Zone Agricultural ERP successfully deployed to production with Next.js & Supabase.
+        </div>
+      </div>
+    </div>
+
+    <div class="action-quick-settings">
+      <div class="quick-toggle active" title="Wi-Fi Connected">
+        <i class="fa-solid fa-wifi"></i>
+        <span>Wi-Fi</span>
+      </div>
+      <div class="quick-toggle active" onclick="toggleNightLight()" id="toggle-nightlight" title="Night Light">
+        <i class="fa-solid fa-moon"></i>
+        <span>Night light</span>
+      </div>
+      <div class="quick-toggle" onclick="openWindow('settings')" title="All Settings">
+        <i class="fa-solid fa-gear"></i>
+        <span>All settings</span>
+      </div>
+      <div class="quick-toggle active" title="Focus Assist">
+        <i class="fa-solid fa-bell"></i>
+        <span>Focus assist</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTEXT MENU (RIGHT CLICK) -->
+  <div id="context-menu" class="context-menu">
+    <div class="context-item" onclick="openWindow('about')"><i class="fa-solid fa-desktop"></i> View System Profile</div>
+    <div class="context-item" onclick="openWindow('projects')"><i class="fa-solid fa-folder-open"></i> Browse Projects</div>
+    <div class="context-item" onclick="openWindow('terminal')"><i class="fa-solid fa-terminal"></i> Open PowerShell Here</div>
+    <div class="context-separator"></div>
+    <div class="context-item" onclick="location.reload()"><i class="fa-solid fa-rotate-right"></i> Refresh Desktop</div>
+    <div class="context-separator"></div>
+    <div class="context-item" onclick="openWindow('settings')"><i class="fa-solid fa-palette"></i> Personalize & Background</div>
+  </div>
+
+  <!-- WINDOWS 10 TASKBAR -->
+  <footer id="taskbar" class="taskbar">
+    <!-- Start Button -->
+    <button id="start-button" class="start-button" title="Start">
+      <svg viewBox="0 0 24 24" class="start-logo">
+        <path fill="currentColor" d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
+      </svg>
+    </button>
+
+    <!-- Search Box -->
+    <div class="taskbar-search" id="taskbar-search-container">
+      <i class="fa-solid fa-magnifying-glass search-icon"></i>
+      <input type="text" id="taskbar-search-input" placeholder="Type here to search (e.g. projects, skills, resume)...">
+      <i class="fa-regular fa-circle search-cortana-ring" title="Cortana"></i>
+    </div>
+
+    <!-- Pinned & Open Taskbar Apps -->
+    <div class="taskbar-apps" id="taskbar-apps">
+      <button class="taskbar-item" data-app="about" title="This PC (About)">
+        <i class="fa-solid fa-desktop"></i>
+      </button>
+      <button class="taskbar-item" data-app="experience" title="Work Experience">
+        <i class="fa-solid fa-briefcase"></i>
+      </button>
+      <button class="taskbar-item" data-app="projects" title="Featured Projects">
+        <i class="fa-solid fa-laptop-code"></i>
+      </button>
+      <button class="taskbar-item" data-app="skills" title="Skills & Tech">
+        <i class="fa-solid fa-microchip"></i>
+      </button>
+      <button class="taskbar-item" data-app="terminal" title="PowerShell">
+        <i class="fa-solid fa-terminal"></i>
+      </button>
+      <button class="taskbar-item" data-app="resume" title="Resume.pdf">
+        <i class="fa-solid fa-file-pdf"></i>
+      </button>
+      <button class="taskbar-item" data-app="contact" title="Mail (Contact)">
+        <i class="fa-solid fa-envelope"></i>
+      </button>
+    </div>
+
+    <!-- System Tray -->
+    <div class="system-tray">
+      <button class="tray-btn" title="Show hidden icons"><i class="fa-solid fa-chevron-up"></i></button>
+      <button class="tray-btn" title="Internet access (Connected)"><i class="fa-solid fa-wifi"></i></button>
+      <button class="tray-btn" title="Speakers (Realtek Audio): 100%"><i class="fa-solid fa-volume-high"></i></button>
+      <button class="tray-btn" title="Battery: Fully Charged 100%"><i class="fa-solid fa-battery-full"></i></button>
+      
+      <!-- Date & Time -->
+      <div class="clock-widget" id="clock-widget" title="Clock and Calendar">
+        <div id="clock-time">12:00 PM</div>
+        <div id="clock-date">9/19/2026</div>
+      </div>
+
+      <!-- Action Center Button -->
+      <button class="tray-btn action-center-btn" id="action-center-btn" title="New notifications">
+        <i class="fa-regular fa-message"></i>
+        <span class="notif-badge">2</span>
+      </button>
+
+      <!-- Show Desktop Peek -->
+      <div class="peek-desktop" id="peek-desktop" title="Show desktop"></div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

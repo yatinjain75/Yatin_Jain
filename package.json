@@ -1,0 +1,22 @@
+{
+  "name": "yatin-portfolio",
+  "version": "1.0.0",
+  "description": "Windows 10 OS Themed Portfolio Website for Yatin Jain",
+  "scripts": {
+    "dev": "npx -y vite --open",
+    "start": "npx -y vite --open",
+    "build": "npx -y vite build",
+    "preview": "npx -y vite preview"
+  },
+  "keywords": [
+    "portfolio",
+    "windows-10",
+    "developer",
+    "yatin-jain"
+  ],
+  "author": "Yatin Jain",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^5.4.11"
+  }
+}
