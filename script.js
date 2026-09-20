@@ -1,32 +1,30 @@
 /**
- * YATIN JAIN - GEN-Z DEVELOPER PORTFOLIO
- * High-End Modular JavaScript Controller
- * Pure Vanilla ES6+
+ * YATIN JAIN - PROFESSIONAL DEVELOPER PORTFOLIO
+ * Senior-Level Modular JavaScript Controller
+ * Pure Vanilla ES6+ (No external JS libraries required)
  */
 
 'use strict';
 
 // ============================================================================
-// 1. INITIALIZATION
+// 1. APPLICATION INITIALIZATION
 // ============================================================================
 document.addEventListener('DOMContentLoaded', () => {
   ThemeManager.init();
-  LiveClock.init();
-  Typewriter.init();
   Navigation.init();
+  Typewriter.init();
   BackToTop.init();
-  KeyboardShortcuts.init();
 });
 
 // ============================================================================
-// 2. THEME MANAGER (LIGHT BY DEFAULT)
+// 2. THEME MANAGER (LIGHT / DARK THEME)
 // ============================================================================
 const ThemeManager = (() => {
-  const STORAGE_KEY = 'yj_genz_theme';
+  const STORAGE_KEY = 'yj_portfolio_theme';
   const toggleBtn = document.getElementById('theme-toggle');
 
   function init() {
-    // Default to 'light' theme
+    // Default to 'light' theme as requested
     const savedTheme = localStorage.getItem(STORAGE_KEY) || 'light';
     apply(savedTheme);
 
@@ -42,6 +40,7 @@ const ThemeManager = (() => {
       if (toggleBtn) {
         toggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
         toggleBtn.setAttribute('title', 'Switch to Light Mode');
+        toggleBtn.setAttribute('aria-label', 'Switch to Light Mode');
       }
     } else {
       document.body.classList.remove('dark-theme');
@@ -49,6 +48,7 @@ const ThemeManager = (() => {
       if (toggleBtn) {
         toggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
         toggleBtn.setAttribute('title', 'Switch to Dark Mode');
+        toggleBtn.setAttribute('aria-label', 'Switch to Dark Mode');
       }
     }
     localStorage.setItem(STORAGE_KEY, theme);
@@ -57,90 +57,13 @@ const ThemeManager = (() => {
   function toggle() {
     const isDark = document.body.classList.contains('dark-theme');
     apply(isDark ? 'light' : 'dark');
-    showToast(isDark ? 'Switched to Light Mode ☀️' : 'Switched to Dark Mode 🌙');
   }
 
   return { init, apply, toggle };
 })();
 
 // ============================================================================
-// 3. LIVE CLOCK (JAIPUR / IST TIME)
-// ============================================================================
-const LiveClock = (() => {
-  const clockEl = document.getElementById('live-clock');
-
-  function init() {
-    if (!clockEl) return;
-    update();
-    setInterval(update, 1000);
-  }
-
-  function update() {
-    const options = {
-      timeZone: 'Asia/Kolkata',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: true
-    };
-    const now = new Date().toLocaleTimeString('en-US', options);
-    clockEl.textContent = `${now} IST`;
-  }
-
-  return { init };
-})();
-
-// ============================================================================
-// 4. TYPEWRITER EFFECT
-// ============================================================================
-const Typewriter = (() => {
-  const target = document.getElementById('typewriter');
-  const phrases = [
-    'Software Engineer',
-    'Full-Stack & Backend Dev',
-    'Python & Django Specialist',
-    'Next.js & REST API Architect'
-  ];
-
-  let phraseIdx = 0;
-  let charIdx = 0;
-  let isDeleting = false;
-
-  function init() {
-    if (!target) return;
-    tick();
-  }
-
-  function tick() {
-    const current = phrases[phraseIdx];
-
-    if (isDeleting) {
-      charIdx--;
-      target.textContent = current.substring(0, charIdx);
-    } else {
-      charIdx++;
-      target.textContent = current.substring(0, charIdx);
-    }
-
-    let speed = isDeleting ? 35 : 75;
-
-    if (!isDeleting && charIdx === current.length) {
-      speed = 2200;
-      isDeleting = true;
-    } else if (isDeleting && charIdx === 0) {
-      isDeleting = false;
-      phraseIdx = (phraseIdx + 1) % phrases.length;
-      speed = 450;
-    }
-
-    setTimeout(tick, speed);
-  }
-
-  return { init };
-})();
-
-// ============================================================================
-// 5. NAVIGATION & SCROLL SPY
+// 3. NAVIGATION (STICKY NAVBAR, ACTIVE SPY, MOBILE DRAWER)
 // ============================================================================
 const Navigation = (() => {
   const navbar = document.getElementById('navbar');
@@ -150,23 +73,79 @@ const Navigation = (() => {
   const sections = document.querySelectorAll('section[id]');
 
   function init() {
-    initScrollElevation();
     initScrollSpy();
-    initMobileDrawer();
+    initMobileMenu();
+    initNavbarElevation();
   }
 
-  function initScrollElevation() {
+  function initNavbarElevation() {
+    let ticking = false;
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 30) {
-        navbar?.classList.add('scrolled');
-      } else {
-        navbar?.classList.remove('scrolled');
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (window.scrollY > 20) {
+            navbar?.classList.add('scrolled');
+          } else {
+            navbar?.classList.remove('scrolled');
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     }, { passive: true });
   }
 
+  function initMobileMenu() {
+    if (!mobileToggle || !navMenu) return;
+
+    mobileToggle.addEventListener('click', () => {
+      const isOpen = navMenu.classList.toggle('open');
+      mobileToggle.setAttribute('aria-expanded', String(isOpen));
+      mobileToggle.innerHTML = isOpen
+        ? '<i class="fa-solid fa-xmark"></i>'
+        : '<i class="fa-solid fa-bars"></i>';
+    });
+
+    // Close when a nav link is clicked
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        closeMobileMenu();
+      });
+    });
+
+    // Close on click outside
+    document.addEventListener('click', (e) => {
+      if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+        closeMobileMenu();
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeMobileMenu();
+      }
+    });
+  }
+
+  function closeMobileMenu() {
+    if (navMenu?.classList.contains('open')) {
+      navMenu.classList.remove('open');
+      mobileToggle?.setAttribute('aria-expanded', 'false');
+      if (mobileToggle) {
+        mobileToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      }
+    }
+  }
+
   function initScrollSpy() {
     if (!('IntersectionObserver' in window)) return;
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -70% 0px',
+      threshold: 0
+    };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -181,96 +160,100 @@ const Navigation = (() => {
           });
         }
       });
-    }, {
-      rootMargin: '-25% 0px -65% 0px',
-      threshold: 0
-    });
+    }, observerOptions);
 
-    sections.forEach(sec => observer.observe(sec));
-  }
-
-  function initMobileDrawer() {
-    if (!mobileToggle || !navMenu) return;
-
-    mobileToggle.addEventListener('click', () => {
-      const isOpen = navMenu.classList.toggle('open');
-      mobileToggle.innerHTML = isOpen
-        ? '<i class="fa-solid fa-xmark"></i>'
-        : '<i class="fa-solid fa-bars"></i>';
-    });
-
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => closeDrawer());
-    });
-
-    document.addEventListener('click', (e) => {
-      if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
-        closeDrawer();
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeDrawer();
-    });
-  }
-
-  function closeDrawer() {
-    if (navMenu?.classList.contains('open')) {
-      navMenu.classList.remove('open');
-      if (mobileToggle) mobileToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
-    }
+    sections.forEach(section => observer.observe(section));
   }
 
   return { init };
 })();
 
 // ============================================================================
-// 6. 1-CLICK EMAIL COPY & TOAST NOTIFICATION
+// 4. TYPEWRITER EFFECT (HERO SECTION)
 // ============================================================================
-function copyEmail() {
-  const email = 'jainyatin693@gmail.com';
-  navigator.clipboard.writeText(email).then(() => {
-    showToast('Copied to clipboard! 🚀');
-    const copyBtnText = document.getElementById('copy-email-text');
-    if (copyBtnText) {
-      const orig = copyBtnText.textContent;
-      copyBtnText.textContent = 'Copied! ✨';
-      setTimeout(() => { copyBtnText.textContent = orig; }, 2000);
-    }
-  }).catch(() => {
-    showToast('Email: jainyatin693@gmail.com');
-  });
-}
+const Typewriter = (() => {
+  const targetEl = document.getElementById('typewriter');
+  const phrases = [
+    'Full-Stack & Backend Developer',
+    'Python & Django Specialist',
+    'Next.js & REST API Architect',
+    'PostgreSQL & Cloud Integrator'
+  ];
 
-function showToast(message) {
-  const toast = document.getElementById('toast');
-  if (!toast) return;
-  toast.textContent = message;
-  toast.classList.add('show');
-  setTimeout(() => {
-    toast.classList.remove('show');
-  }, 2500);
-}
+  let phraseIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  let timeoutId = null;
 
-// ============================================================================
-// 7. TOPIC SELECTION (CONTACT FORM CHIPS)
-// ============================================================================
-function selectTopic(buttonEl, topicName) {
-  document.querySelectorAll('.topic-chip').forEach(b => b.classList.remove('active'));
-  buttonEl.classList.add('active');
-
-  const subjectInput = document.getElementById('contact-subject');
-  if (subjectInput) {
-    subjectInput.value = topicName;
+  function init() {
+    if (!targetEl) return;
+    tick();
   }
-}
+
+  function tick() {
+    const currentPhrase = phrases[phraseIndex];
+
+    if (isDeleting) {
+      charIndex--;
+      targetEl.textContent = currentPhrase.substring(0, charIndex);
+    } else {
+      charIndex++;
+      targetEl.textContent = currentPhrase.substring(0, charIndex);
+    }
+
+    let delta = isDeleting ? 40 : 80;
+
+    if (!isDeleting && charIndex === currentPhrase.length) {
+      // Pause at end of phrase
+      delta = 2000;
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      phraseIndex = (phraseIndex + 1) % phrases.length;
+      delta = 500;
+    }
+
+    timeoutId = setTimeout(tick, delta);
+  }
+
+  return { init };
+})();
 
 // ============================================================================
-// 8. RESUME 1-PAGE PRINT & DOWNLOAD HANDLER
+// 5. BACK TO TOP CONTROLLER
+// ============================================================================
+const BackToTop = (() => {
+  const btn = document.getElementById('back-to-top');
+
+  function init() {
+    if (!btn) return;
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 350) {
+        btn.classList.add('visible');
+      } else {
+        btn.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    btn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+
+  return { init };
+})();
+
+// ============================================================================
+// 6. RESUME 1-PAGE PRINT & DOWNLOAD HANDLER
 // ============================================================================
 function printResumePDF() {
   const pdfUrl = 'Yatin_Jain_Resume.pdf';
 
+  // Create or reuse hidden iframe to trigger PDF print dialog
   let printFrame = document.getElementById('resume-print-iframe');
   if (!printFrame) {
     printFrame = document.createElement('iframe');
@@ -292,13 +275,14 @@ function printResumePDF() {
       printFrame.contentWindow.focus();
       printFrame.contentWindow.print();
     } catch (err) {
+      // Fallback: Open in new tab where browser's native PDF viewer enables instant 1-page print
       window.open(pdfUrl, '_blank');
     }
   };
 }
 
 // ============================================================================
-// 9. CONTACT FORM HANDLER (FORMSUBMIT AJAX)
+// 7. CONTACT FORM (AJAX FORM SUBMISSION VIA FORMSUBMIT)
 // ============================================================================
 async function sendPortfolioMail() {
   const nameInput = document.getElementById('contact-name');
@@ -318,7 +302,8 @@ async function sendPortfolioMail() {
     return;
   }
 
-  const origBtnContent = submitBtn ? submitBtn.innerHTML : '';
+  // Set loading state on button
+  const originalBtnContent = submitBtn ? submitBtn.innerHTML : '';
   if (submitBtn) {
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
@@ -326,7 +311,7 @@ async function sendPortfolioMail() {
   showFeedback('', '');
 
   try {
-    const res = await fetch('https://formsubmit.co/ajax/jainyatin693@gmail.com', {
+    const response = await fetch('https://formsubmit.co/ajax/jainyatin693@gmail.com', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -335,27 +320,26 @@ async function sendPortfolioMail() {
       body: JSON.stringify({
         name: name,
         email: email,
-        _subject: `[Gen-Z Portfolio] ${subject}`,
+        _subject: `[Portfolio Contact] ${subject}`,
         message: message
       })
     });
 
-    const result = await res.json();
+    const result = await response.json();
 
-    if (res.ok || result.success === 'true') {
-      showFeedback('✓ Message sent successfully to Yatin! 🚀', 'success');
-      showToast('Message delivered to Yatin! 📬');
+    if (response.ok || result.success === 'true') {
+      showFeedback('✓ Thank you! Your message has been sent successfully to Yatin Jain.', 'success');
       document.getElementById('contact-form')?.reset();
     } else {
-      showFeedback('Could not send directly. Click "Open in Gmail" below.', 'error');
+      showFeedback('Could not send directly. Please click "Open in Gmail" below.', 'error');
     }
   } catch (err) {
     console.error('Submission error:', err);
-    showFeedback('Network error. Click "Open in Gmail" to connect directly.', 'error');
+    showFeedback('Network error. Click "Open in Gmail" to send directly from your email client.', 'error');
   } finally {
     if (submitBtn) {
       submitBtn.disabled = false;
-      submitBtn.innerHTML = origBtnContent;
+      submitBtn.innerHTML = originalBtnContent;
     }
   }
 }
@@ -365,71 +349,24 @@ function showFeedback(msg, type) {
   if (!el) return;
   el.textContent = msg;
   if (type === 'success') {
-    el.style.color = 'var(--radar-color, #10b981)';
+    el.style.color = 'var(--success, #10b981)';
   } else if (type === 'error') {
-    el.style.color = '#ef4444';
+    el.style.color = 'var(--danger, #ef4444)';
   } else {
     el.style.color = '';
   }
 }
 
 // ============================================================================
-// 10. DIRECT GMAIL COMPOSE FALLBACK
+// 8. DIRECT GMAIL COMPOSE FALLBACK
 // ============================================================================
 function openDirectGmail() {
-  const subject = document.getElementById('contact-subject')?.value.trim() || 'Software Engineer Opportunity';
-  const name = document.getElementById('contact-name')?.value.trim() || 'Recruiter / Engineer';
-  const rawMsg = document.getElementById('contact-message')?.value.trim() || 'Hey Yatin,\n\nI checked out your portfolio and would love to connect.';
-
+  const subject = document.getElementById('contact-subject')?.value.trim() || 'Software Engineer Opportunity / Collaboration';
+  const name = document.getElementById('contact-name')?.value.trim() || 'Colleague';
+  const rawMsg = document.getElementById('contact-message')?.value.trim() || 'Hi Yatin,\n\nI reviewed your portfolio and would like to connect.';
+  
   const body = `From: ${name}\n\n${rawMsg}`;
   const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=jainyatin693@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
+  
   window.open(gmailUrl, '_blank');
 }
-
-// ============================================================================
-// 11. BACK TO TOP
-// ============================================================================
-const BackToTop = (() => {
-  const btn = document.getElementById('back-to-top');
-
-  function init() {
-    if (!btn) return;
-
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 400) {
-        btn.classList.add('visible');
-      } else {
-        btn.classList.remove('visible');
-      }
-    }, { passive: true });
-
-    btn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
-  return { init };
-})();
-
-// ============================================================================
-// 12. KEYBOARD SHORTCUTS
-// ============================================================================
-const KeyboardShortcuts = (() => {
-  function init() {
-    document.addEventListener('keydown', (e) => {
-      // Don't trigger when user is typing in form inputs
-      if (['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) return;
-
-      if (e.key === 't' || e.key === 'T') {
-        ThemeManager.toggle();
-      } else if (e.key === 'c' || e.key === 'C') {
-        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-      } else if (e.key === 'r' || e.key === 'R') {
-        document.getElementById('resume')?.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-  }
-
-  return { init };
-})();
