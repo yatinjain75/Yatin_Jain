@@ -69,7 +69,7 @@ const Navigation = (() => {
   const navbar = document.getElementById('navbar');
   const mobileToggle = document.getElementById('mobile-toggle');
   const navMenu = document.getElementById('nav-menu');
-  const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+  const navLinks = document.querySelectorAll('.nav-link[href^="#"], .dock-item[href^="#"]');
   const sections = document.querySelectorAll('section[id]');
 
   function init() {

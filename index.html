@@ -34,12 +34,56 @@
         </a>
 
         <div class="nav-menu" id="nav-menu" role="menu">
-          <a href="#about" class="nav-link" role="menuitem">About</a>
-          <a href="#experience" class="nav-link" role="menuitem">Experience</a>
-          <a href="#projects" class="nav-link" role="menuitem">Projects</a>
-          <a href="#skills" class="nav-link" role="menuitem">Skills</a>
-          <a href="#resume" class="nav-link" role="menuitem">Resume</a>
-          <a href="#contact" class="nav-link btn-contact" role="menuitem">Contact</a>
+          <div class="nav-drawer-header mobile-only">
+            <div class="nav-drawer-user">
+              <div class="nav-drawer-avatar">YJ</div>
+              <div class="nav-drawer-meta">
+                <strong>Yatin Jain</strong>
+                <span>Software Engineer</span>
+              </div>
+            </div>
+            <span class="nav-drawer-status"><span class="pulse-dot"></span> Open to Work</span>
+          </div>
+
+          <div class="nav-drawer-links">
+            <a href="#hero" class="nav-link mobile-only" role="menuitem">
+              <span class="nav-link-content"><i class="fa-solid fa-house"></i> <span>Home</span></span>
+              <i class="fa-solid fa-chevron-right nav-arrow"></i>
+            </a>
+            <a href="#about" class="nav-link" role="menuitem">
+              <span class="nav-link-content"><i class="fa-solid fa-user mobile-icon"></i> <span>About</span></span>
+              <i class="fa-solid fa-chevron-right nav-arrow mobile-only"></i>
+            </a>
+            <a href="#experience" class="nav-link" role="menuitem">
+              <span class="nav-link-content"><i class="fa-solid fa-briefcase mobile-icon"></i> <span>Experience</span></span>
+              <i class="fa-solid fa-chevron-right nav-arrow mobile-only"></i>
+            </a>
+            <a href="#projects" class="nav-link" role="menuitem">
+              <span class="nav-link-content"><i class="fa-solid fa-laptop-code mobile-icon"></i> <span>Projects</span></span>
+              <i class="fa-solid fa-chevron-right nav-arrow mobile-only"></i>
+            </a>
+            <a href="#skills" class="nav-link" role="menuitem">
+              <span class="nav-link-content"><i class="fa-solid fa-layer-group mobile-icon"></i> <span>Skills</span></span>
+              <i class="fa-solid fa-chevron-right nav-arrow mobile-only"></i>
+            </a>
+            <a href="#resume" class="nav-link" role="menuitem">
+              <span class="nav-link-content"><i class="fa-solid fa-file-lines mobile-icon"></i> <span>Resume</span></span>
+              <i class="fa-solid fa-chevron-right nav-arrow mobile-only"></i>
+            </a>
+            <a href="#contact" class="nav-link btn-contact" role="menuitem">
+              <span class="nav-link-content"><i class="fa-solid fa-paper-plane mobile-icon"></i> <span>Contact</span></span>
+              <i class="fa-solid fa-arrow-right nav-arrow mobile-only"></i>
+            </a>
+          </div>
+
+          <div class="nav-drawer-footer mobile-only">
+            <div class="nav-drawer-socials">
+              <a href="https://github.com/yatinjain75" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+              <a href="https://linkedin.com/in/yatinjain75" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+              <a href="mailto:jainyatin693@gmail.com" title="Email" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+              <a href="tel:+917357910535" title="Call" aria-label="Phone"><i class="fa-solid fa-phone"></i></a>
+            </div>
+          </div>
         </div>
 
         <div class="nav-actions">
@@ -775,6 +819,26 @@
       </div>
     </div>
   </footer>
+
+  <!-- MOBILE FLOATING ACTION DOCK (Visible on Mobile Devices) -->
+  <nav class="mobile-dock" id="mobile-dock" aria-label="Mobile Quick Actions">
+    <a href="#hero" class="dock-item" aria-label="Home">
+      <i class="fa-solid fa-house"></i>
+      <span>Home</span>
+    </a>
+    <a href="#projects" class="dock-item" aria-label="Projects">
+      <i class="fa-solid fa-laptop-code"></i>
+      <span>Projects</span>
+    </a>
+    <a href="Yatin_Jain_Resume.pdf" download="Yatin_Jain_Resume.pdf" class="dock-item dock-highlight" aria-label="Resume PDF">
+      <i class="fa-solid fa-file-arrow-down"></i>
+      <span>Resume</span>
+    </a>
+    <a href="#contact" class="dock-item" aria-label="Contact">
+      <i class="fa-solid fa-paper-plane"></i>
+      <span>Contact</span>
+    </a>
+  </nav>
 
   <!-- FLOATING BACK TO TOP BUTTON -->
   <button id="back-to-top" class="back-to-top" title="Back to top" aria-label="Scroll back to top">
