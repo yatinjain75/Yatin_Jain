@@ -88,7 +88,9 @@ body.dark-theme {
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
   font-size: 15px;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -99,6 +101,10 @@ body {
   transition: background-color 0.25s ease, color 0.25s ease;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+}
+
+button, a, input, textarea {
+  touch-action: manipulation;
 }
 
 .skip-link {
@@ -1424,10 +1430,12 @@ body.dark-theme .hero-section {
   .hero-container {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 40px;
   }
 
   .hero-desc {
-    margin: 0 auto 32px;
+    margin: 0 auto 28px;
+    max-width: 600px;
   }
 
   .hero-ctas {
@@ -1440,74 +1448,519 @@ body.dark-theme .hero-section {
 
   .about-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .projects-grid {
     grid-template-columns: 1fr;
+    gap: 24px;
   }
 
   .skills-container {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .contact-grid {
     grid-template-columns: 1fr;
+    gap: 32px;
   }
 }
 
 @media (max-width: 768px) {
-  .hero-title {
-    font-size: 36px;
+  html {
+    scroll-padding-top: 70px;
+  }
+
+  /* Section Spacing */
+  .section {
+    padding: 64px 0;
+  }
+
+  .section-header {
+    margin-bottom: 36px;
+  }
+
+  .section-title {
+    font-size: clamp(26px, 6vw, 32px);
+  }
+
+  .section-desc {
+    font-size: 14.5px;
+  }
+
+  /* Mobile Navigation & Drawer */
+  .navbar {
+    height: 64px;
   }
 
   .mobile-toggle-btn {
     display: flex;
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-sm);
+    font-size: 16px;
+  }
+
+  .theme-toggle-btn {
+    width: 42px;
+    height: 42px;
   }
 
   .nav-menu {
-    position: absolute;
-    top: 70px;
+    position: fixed;
+    top: 64px;
     left: 0;
     right: 0;
-    background: var(--bg-card);
+    background: var(--navbar-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border-color);
     flex-direction: column;
-    padding: 24px;
-    gap: 18px;
-    display: none;
-    box-shadow: var(--shadow-lg);
-  }
-
-  .nav-menu.open {
+    padding: 18px 20px 24px;
+    gap: 10px;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+    transform: translateY(-8px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, visibility 0.25s;
+    max-height: calc(100vh - 64px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 999;
     display: flex;
   }
 
+  .nav-menu.open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .nav-menu .nav-link {
+    width: 100%;
+    padding: 12px 18px;
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-weight: 600;
+    text-align: left;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: var(--transition);
+  }
+
+  .nav-menu .nav-link:hover,
+  .nav-menu .nav-link.active {
+    background: var(--badge-bg);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .nav-menu .nav-link.active::after {
+    display: none;
+  }
+
+  .nav-menu .nav-link.btn-contact {
+    justify-content: center;
+    background: var(--accent);
+    color: #ffffff !important;
+    border-color: var(--accent);
+    margin-top: 6px;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.25);
+  }
+
+  /* Hero Section */
+  .hero-section {
+    padding: 105px 0 60px;
+  }
+
+  .hero-badge {
+    font-size: 11.5px;
+    padding: 5px 12px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: clamp(28px, 7vw, 38px);
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(16px, 4.2vw, 19px);
+    margin-bottom: 14px;
+  }
+
+  .hero-desc {
+    font-size: 14.5px;
+    line-height: 1.65;
+    margin: 0 auto 24px;
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto 26px;
+    gap: 10px;
+  }
+
+  .hero-ctas .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 18px;
+    font-size: 14px;
+  }
+
+  .profile-card {
+    padding: 20px 16px;
+  }
+
+  .code-terminal {
+    padding: 12px 14px;
+    margin-bottom: 16px;
+  }
+
+  .terminal-body {
+    font-size: 11.5px;
+    line-height: 1.5;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .stats-mini-grid {
+    gap: 8px;
+    padding-top: 14px;
+  }
+
+  .stat-number {
+    font-size: 19px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 0.3px;
+  }
+
+  /* About Section */
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .about-card {
+    padding: 22px 18px;
+  }
+
+  .edu-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .edu-year {
+    align-self: flex-start;
+  }
+
+  /* Timeline / Experience */
   .timeline {
-    padding-left: 24px;
+    padding-left: 20px;
+    gap: 24px;
   }
 
   .timeline::before {
-    left: 7px;
+    left: 5px;
+    top: 12px;
+    bottom: 12px;
   }
 
   .timeline-dot {
-    left: -24px;
-    width: 16px;
-    height: 16px;
-    top: 28px;
+    left: -21px;
+    width: 14px;
+    height: 14px;
+    top: 22px;
+    border-width: 2.5px;
   }
 
   .timeline-card {
-    padding: 20px;
+    padding: 20px 16px;
+  }
+
+  .timeline-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .role {
+    font-size: 16px;
+  }
+
+  .timeline-bullets {
+    margin-left: 14px;
+    margin-bottom: 14px;
+    gap: 6px;
+  }
+
+  .timeline-bullets li {
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .skill-tags span {
+    font-size: 11px;
+    padding: 2px 8px;
+  }
+
+  /* Projects */
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .project-card {
+    padding: 22px 18px;
+  }
+
+  .project-name {
+    font-size: 18px;
+    line-height: 1.35;
+  }
+
+  .project-desc {
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .project-bullets {
+    margin-left: 14px;
+    gap: 5px;
+  }
+
+  .project-bullets li {
+    font-size: 12px;
+  }
+
+  .project-links {
+    gap: 8px;
+  }
+
+  .btn-link {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  /* Skills */
+  .skills-container {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .skill-category {
+    padding: 20px 16px;
+  }
+
+  .cat-head {
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+  }
+
+  .cat-head h3 {
+    font-size: 16.5px;
+  }
+
+  .skill-chips {
+    gap: 8px;
+  }
+
+  .chip {
+    padding: 6px 12px;
+    font-size: 12.5px;
+  }
+
+  /* Resume Section */
+  .resume-actions-bar {
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto 20px;
+    gap: 10px;
+  }
+
+  .resume-actions-bar .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 18px;
+  }
+
+  .resume-page-container {
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+  }
+
+  .resume-footer-bar {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+    padding: 14px 16px;
+  }
+
+  /* Contact Section */
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .contact-info-card h3 {
+    font-size: 20px;
   }
 
   .contact-form-card {
-    padding: 22px;
+    padding: 22px 18px;
+  }
+
+  /* iOS Safari Zoom Prevention: Font size >= 16px on inputs/textareas */
+  .form-group input,
+  .form-group textarea {
+    font-size: 16px !important;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 18px;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 32px 0 24px;
   }
 
   .footer-container {
     flex-direction: column;
     text-align: center;
+    gap: 16px;
+  }
+
+  .back-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 42px;
+    height: 42px;
+    font-size: 15px;
+  }
+}
+
+/* Extra Small Phones (<= 480px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .section {
+    padding: 52px 0;
+  }
+
+  .section-header {
+    margin-bottom: 28px;
+  }
+
+  .section-title {
+    font-size: 24px;
+  }
+
+  .hero-section {
+    padding: 95px 0 48px;
+  }
+
+  .hero-title {
+    font-size: 28px;
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+  }
+
+  .hero-socials {
+    gap: 12px;
+  }
+
+  .hero-socials a {
+    width: 42px;
+    height: 42px;
+    font-size: 18px;
+  }
+
+  .about-card {
+    padding: 18px 14px;
+  }
+
+  .project-card {
+    padding: 18px 14px;
+  }
+
+  .project-links {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .project-links .btn-link {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 14px;
+  }
+
+  .resume-actions-bar {
+    max-width: 280px;
+  }
+
+  .contact-form-card {
+    padding: 18px 14px;
+  }
+
+  .detail-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+  }
+}
+
+/* Compact Foldables / iPhone SE 1st Gen (<= 360px) */
+@media (max-width: 360px) {
+  .hero-title {
+    font-size: 25px;
+  }
+
+  .hero-subtitle {
+    font-size: 14.5px;
+  }
+
+  .hero-badge {
+    font-size: 11px;
+    padding: 4px 10px;
+  }
+
+  .stat-number {
+    font-size: 16px;
+  }
+
+  .stat-label {
+    font-size: 9px;
+  }
+
+  .chip {
+    padding: 5px 10px;
+    font-size: 11.5px;
   }
 }
 
