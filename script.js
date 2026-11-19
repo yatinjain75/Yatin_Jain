@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   Navigation.init();
   Typewriter.init();
   BackToTop.init();
+  VisitorTracker.init();
 });
 
 // ============================================================================
@@ -370,3 +371,201 @@ function openDirectGmail() {
   
   window.open(gmailUrl, '_blank');
 }
+
+// ============================================================================
+// 9. VISITOR TRACKER & COOKIE MANAGEMENT
+// ============================================================================
+const VisitorTracker = (() => {
+  const COOKIE_SESSION_KEY = 'yj_visitor_session';
+  const COOKIE_CONSENT_KEY = 'yj_cookie_consent';
+  const STORAGE_ALERT_KEY = 'yj_last_visitor_alert';
+  const ALERT_WINDOW_MS = 24 * 60 * 60 * 1000; // 24-hour deduplication window
+
+  function getCookie(name) {
+    try {
+      const match = document.cookie.match(new RegExp('(?:^|;\\s*)' + name + '=([^;]*)'));
+      return match ? decodeURIComponent(match[1]) : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function setCookie(name, value, days) {
+    try {
+      const date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      const maxAge = days * 86400;
+      document.cookie = `${name}=${encodeURIComponent(value)}; max-age=${maxAge}; expires=${date.toUTCString()}; path=/; SameSite=Lax`;
+    } catch (e) {
+      console.warn('Cookie set error:', e);
+    }
+  }
+
+  function detectDevice() {
+    const ua = navigator.userAgent || '';
+    const isMobile = /Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua) || window.innerWidth <= 768;
+    const isTablet = /iPad|Tablet/i.test(ua) || (window.innerWidth > 768 && window.innerWidth <= 1024 && 'ontouchstart' in window);
+    
+    let deviceType = 'Desktop';
+    if (isMobile) deviceType = 'Mobile';
+    else if (isTablet) deviceType = 'Tablet';
+
+    let os = 'Unknown OS';
+    if (/Windows/i.test(ua)) os = 'Windows';
+    else if (/Macintosh|Mac OS/i.test(ua)) os = 'macOS';
+    else if (/iPhone|iPad|iPod/i.test(ua)) os = 'iOS';
+    else if (/Android/i.test(ua)) os = 'Android';
+    else if (/Linux/i.test(ua)) os = 'Linux';
+
+    let browser = 'Unknown Browser';
+    if (/Edg/i.test(ua)) browser = 'Microsoft Edge';
+    else if (/Chrome/i.test(ua)) browser = 'Google Chrome';
+    else if (/Safari/i.test(ua) && !/Chrome/i.test(ua)) browser = 'Safari';
+    else if (/Firefox/i.test(ua)) browser = 'Mozilla Firefox';
+    else if (/MSIE|Trident/i.test(ua)) browser = 'Internet Explorer';
+
+    return { deviceType, os, browser };
+  }
+
+  async function fetchGeoLocation() {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 2500);
+      
+      const res = await fetch('https://ipapi.co/json/', {
+        signal: controller.signal,
+        headers: { 'Accept': 'application/json' }
+      });
+      clearTimeout(timeoutId);
+      
+      if (res.ok) {
+        const data = await res.json();
+        return {
+          ip: data.ip || 'Private/Hidden',
+          location: `${data.city || 'Unknown City'}, ${data.region || ''} ${data.country_name || ''} (${data.country_code || 'N/A'})`.trim(),
+          org: data.org || 'Unknown Provider'
+        };
+      }
+    } catch (e) {
+      // Graceful fallback if offline or blocked by ad-blocker
+    }
+    return {
+      ip: 'Undisclosed',
+      location: 'Location lookup protected/unavailable',
+      org: 'N/A'
+    };
+  }
+
+  async function notifyVisitor() {
+    const hasSessionCookie = getCookie(COOKIE_SESSION_KEY);
+    let lastAlertTime = 0;
+    try {
+      lastAlertTime = Number(localStorage.getItem(STORAGE_ALERT_KEY)) || 0;
+    } catch (e) {}
+
+    const now = Date.now();
+
+    // Deduplicate: If cookie exists or alert was sent within the last 24 hours, skip notification
+    if (hasSessionCookie || (lastAlertTime && (now - lastAlertTime < ALERT_WINDOW_MS))) {
+      return;
+    }
+
+    // Set cookie and localStorage timestamp immediately to prevent race conditions
+    setCookie(COOKIE_SESSION_KEY, 'active', 1);
+    try {
+      localStorage.setItem(STORAGE_ALERT_KEY, now.toString());
+    } catch (e) {}
+
+    const { deviceType, os, browser } = detectDevice();
+    const geo = await fetchGeoLocation();
+
+    const visitTime = new Date().toLocaleString('en-IN', {
+      dateStyle: 'full',
+      timeStyle: 'medium',
+      timeZone: 'Asia/Kolkata'
+    }) + ' (IST)';
+
+    const payload = {
+      _subject: `🔔 [Portfolio Alert] New ${deviceType} Visitor (${geo.location.split(',')[0] || 'Web'})`,
+      _template: 'table',
+      _captcha: 'false',
+      'Alert Type': 'New Portfolio Visitor',
+      'Visit Time (IST)': visitTime,
+      'Device Type': deviceType,
+      'Browser & OS': `${browser} on ${os}`,
+      'Screen Resolution': `${window.screen.width} x ${window.screen.height} (Viewport: ${window.innerWidth} x ${window.innerHeight})`,
+      'Referrer / Source': document.referrer ? document.referrer : 'Direct Visit / Bookmark',
+      'Location': geo.location,
+      'Network / ISP': geo.org,
+      'IP Address': geo.ip,
+      'Page URL': window.location.href,
+      'Language': navigator.language || 'en'
+    };
+
+    try {
+      await fetch('https://formsubmit.co/ajax/jainyatin693@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+    } catch (err) {
+      console.warn('Visitor alert notice sent with local status.');
+    }
+  }
+
+  function initCookieBanner() {
+    const banner = document.getElementById('cookie-toast');
+    if (!banner) return;
+
+    const consentCookie = getCookie(COOKIE_CONSENT_KEY);
+    let consentStorage = null;
+    try {
+      consentStorage = localStorage.getItem(COOKIE_CONSENT_KEY);
+    } catch (e) {}
+
+    if (consentCookie === 'accepted' || consentStorage === 'accepted') {
+      banner.style.display = 'none';
+      return;
+    }
+
+    // Display banner after slight delay
+    setTimeout(() => {
+      banner.classList.add('visible');
+    }, 1200);
+
+    const acceptBtn = document.getElementById('cookie-accept-btn');
+    const closeBtn = document.getElementById('cookie-close-btn');
+
+    function dismissBanner() {
+      banner.classList.remove('visible');
+      setTimeout(() => {
+        banner.style.display = 'none';
+      }, 350);
+      setCookie(COOKIE_CONSENT_KEY, 'accepted', 365);
+      try {
+        localStorage.setItem(COOKIE_CONSENT_KEY, 'accepted');
+      } catch (e) {}
+    }
+
+    if (acceptBtn) acceptBtn.addEventListener('click', dismissBanner);
+    if (closeBtn) closeBtn.addEventListener('click', dismissBanner);
+  }
+
+  function init() {
+    initCookieBanner();
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(() => notifyVisitor(), { timeout: 3000 });
+    } else {
+      setTimeout(notifyVisitor, 1000);
+    }
+  }
+
+  return {
+    init,
+    getCookie,
+    setCookie
+  };
+})();
